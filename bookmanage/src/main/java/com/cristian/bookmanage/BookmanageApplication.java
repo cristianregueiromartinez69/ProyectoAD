@@ -10,4 +10,5 @@ public class BookmanageApplication {
 		SpringApplication.run(BookmanageApplication.class, args);
 	}
 
+	//TODO: meter swagger, meter postgres y mongodb en una nube para las operaciones crud
 }

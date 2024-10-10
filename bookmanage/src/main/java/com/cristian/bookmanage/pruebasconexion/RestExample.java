@@ -1,4 +1,4 @@
-package com.cristian.bookmanage;
+package com.cristian.bookmanage.pruebasconexion;
 
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.PostMapping;

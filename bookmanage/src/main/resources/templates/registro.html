@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Registro de Usuarios</title>
+    <link rel="stylesheet" href="/static/css/registro.css">
+    <script src="/static/js/registro.js"></script>
 </head>
 <body>
 <div class="login-page">
     <div class="form">
-        <form class="register-form">
-            <input type="text" placeholder="name"/>
-            <input type="password" placeholder="password"/>
-            <input type="text" placeholder="email address"/>
+        <form th:action=@{/registro} method="post" th:object="${usuario}">
+            <input type="text" placeholder="name" th:field="*{nombre}" required autofocus="autofocus"/>
+            <input type="email" placeholder="email" th:field="*{email}"/>
+            <input type="text" placeholder="password" th:field="*{password}"/>
             <button>create</button>
-            <p class="message">Already registered? <a href="#">Sign In</a></p>
+            <p class="message">Ya te registraste? <a href="#">Inicia sesión</a></p>
         </form>
         <form class="login-form">
             <input type="text" placeholder="username"/>

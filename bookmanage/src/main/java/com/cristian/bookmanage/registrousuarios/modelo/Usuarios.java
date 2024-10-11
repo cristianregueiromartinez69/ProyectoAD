@@ -12,25 +12,25 @@ public class Usuarios {
 
     @Column(name = "nombre")
     private String nombre;
-    @Column(name = "password")
-    private String password;
     @Column(name = "email")
     private String email;
+    @Column(name = "password")
+    private String password;
 
     public Usuarios() {
     }
 
-    public Usuarios(String nombre, String password, String email) {
+    public Usuarios(String nombre, String email, String password) {
         this.nombre = nombre;
-        this.password = password;
         this.email = email;
+        this.password = password;
     }
 
-    public Usuarios(Long id, String nombre, String password, String email) {
+    public Usuarios(Long id, String nombre, String email, String password) {
         this.id = id;
         this.nombre = nombre;
-        this.password = password;
         this.email = email;
+        this.password = password;
     }
 
     public Long getId() {

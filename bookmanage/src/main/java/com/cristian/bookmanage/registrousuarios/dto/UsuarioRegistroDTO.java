@@ -6,20 +6,20 @@ public class UsuarioRegistroDTO {
 
     private Long id;
     private String nombre;
-    private String password;
     private String email;
+    private String password;
 
-    public UsuarioRegistroDTO(Long id, String nombre, String password, String email) {
+    public UsuarioRegistroDTO(Long id, String nombre, String email, String password) {
         this.id = id;
         this.nombre = nombre;
-        this.password = password;
         this.email = email;
+        this.password = password;
     }
 
-    public UsuarioRegistroDTO(String nombre, String password, String email) {
+    public UsuarioRegistroDTO(String nombre, String email, String password) {
         this.nombre = nombre;
-        this.password = password;
         this.email = email;
+        this.password = password;
     }
 
     public UsuarioRegistroDTO(String email) {

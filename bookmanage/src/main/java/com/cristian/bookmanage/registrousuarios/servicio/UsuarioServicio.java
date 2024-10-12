@@ -7,4 +7,6 @@ public interface UsuarioServicio {
 
     public Usuarios save(UsuarioRegistroDTO registroDTO);
 
+    public Usuarios saveMongoDB(UsuarioRegistroDTO registroDTO);
+
 }

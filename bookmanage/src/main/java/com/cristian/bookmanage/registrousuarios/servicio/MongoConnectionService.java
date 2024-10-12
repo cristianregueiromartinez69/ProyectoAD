@@ -14,13 +14,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class MongoConnectionService {
-    private MongoDatabase mongoDatabase;
+    private final MongoClient mongoClient;
+    private final MongoDatabase mongoDatabase;
 
     public MongoConnectionService() {
-        checkMongoDBConnection();
-    }
-
-    public void checkMongoDBConnection() {
         String connectionString = "mongodb+srv://mongo:mongo@proyectoad.xgtsf.mongodb.net/?retryWrites=true&w=majority&appName=ProyectoAD";
         ServerApi serverApi = ServerApi.builder()
                 .version(ServerApiVersion.V1)
@@ -29,17 +26,8 @@ public class MongoConnectionService {
                 .applyConnectionString(new ConnectionString(connectionString))
                 .serverApi(serverApi)
                 .build();
-
-        try (MongoClient mongoClient = MongoClients.create(settings)) {
-            try {
-                mongoDatabase = mongoClient.getDatabase("bookmanagedb");
-                mongoDatabase.runCommand(new Document("ping", 1));
-                System.out.println("Pinged your deployment. You successfully connected to MongoDB!");
-            } catch (MongoException e) {
-                e.printStackTrace();
-                System.out.println("Error connecting to MongoDB: " + e.getMessage());
-            }
-        }
+        this.mongoClient = MongoClients.create(settings);
+        this.mongoDatabase = mongoClient.getDatabase("bookmanagedb");
     }
 
     public void save(UsuarioRegistroDTO registroDTO) {

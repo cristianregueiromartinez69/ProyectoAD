@@ -24,25 +24,14 @@ public class UsuarioRegistroControlador {
     @PostMapping
     public ResponseEntity<String> registrarCuentaUsuario(@RequestBody UsuarioRegistroDTO registroDTO) {
         usuarioServicio.save(registroDTO);
+        mongoConnectionService.save(registroDTO);
         return new ResponseEntity<>("Usuario registrado exitosamente", HttpStatus.CREATED);
     }
 
 
-    /**
-    @PostMapping
-    public ResponseEntity<String> registrarCuentaUsuarioMongoDb(@RequestBody UsuarioRegistroDTO registroDTO){
 
-        try{
-            mongoConnectionService.save(registroDTO);
-            return new ResponseEntity<>("Usuario registrado correctamente", HttpStatus.CREATED);
-        }catch(Exception e){
 
-            System.out.println("Error al registrar usuario " + e.getMessage());
-            return new ResponseEntity<>("Error al registrar usuario: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
 
-    }
-**/
 
 
 }

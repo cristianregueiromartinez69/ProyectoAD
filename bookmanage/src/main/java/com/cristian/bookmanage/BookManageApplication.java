@@ -7,7 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BookManageApplication implements CommandLineRunner {
+public class BookManageApplication{
 
 	@Autowired
 	private MongoConnectionService mongoDBConnectionService;
@@ -16,8 +16,5 @@ public class BookManageApplication implements CommandLineRunner {
 		SpringApplication.run(BookManageApplication.class, args);
 	}
 
-	@Override
-	public void run(String... args) throws Exception {
-		mongoDBConnectionService.checkMongoDBConnection();
-	}
+
 }

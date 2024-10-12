@@ -1,6 +1,6 @@
 package com.cristian.bookmanage;
 
-import com.cristian.bookmanage.pruebasconexion.MongoConnectionService;
+import com.cristian.bookmanage.registrousuarios.servicio.MongoConnectionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

@@ -5,16 +5,22 @@ import com.cristian.bookmanage.registrousuarios.modelo.Usuarios;
 import com.cristian.bookmanage.registrousuarios.repositorio.UsuarioRepositorio;
 import com.cristian.bookmanage.registrousuarios.repositorio.UsuarioRepositorioMongoDb;
 import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import org.bson.Document;
+
 
 @Service
 public class UsuarioServicioImpl implements UsuarioServicio{
 
     private UsuarioRepositorio usuarioRepositorio;
-    private UsuarioRepositorioMongoDb usuarioRepositorioMongoDb;
 
     public UsuarioServicioImpl(UsuarioRepositorio usuarioRepositorio) {
         this.usuarioRepositorio = usuarioRepositorio;
     }
+
 
     @Override
     public Usuarios save(UsuarioRegistroDTO registroDTO) {
@@ -25,11 +31,7 @@ public class UsuarioServicioImpl implements UsuarioServicio{
         return usuarioRepositorio.save(usuario);
     }
 
-    @Override
-    public Usuarios saveMongoDB(UsuarioRegistroDTO registroDTO) {
 
-
-    }
 
 
 }

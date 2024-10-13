@@ -33,6 +33,11 @@ public class Usuarios {
         this.password = password;
     }
 
+    public Usuarios(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
     public Long getId() {
         return id;
     }

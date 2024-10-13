@@ -17,6 +17,11 @@ public class UsuariosMongoDb {
         this.password = password;
     }
 
+    public UsuariosMongoDb(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
     public UsuariosMongoDb() {
     }
 

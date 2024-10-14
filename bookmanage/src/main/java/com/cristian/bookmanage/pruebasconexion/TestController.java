@@ -8,6 +8,9 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+/**
+ * Clase que comprueba la conexion con postgres sql
+ */
 @RestController
 public class TestController {
 

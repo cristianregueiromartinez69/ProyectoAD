@@ -3,6 +3,9 @@ package com.cristian.bookmanage.pruebasconexion;
 import com.cristian.bookmanage.registrousuarios.dto.UsuarioRegistroDTO;
 import com.cristian.bookmanage.registrousuarios.servicio.MongoConnectionService;
 
+/**
+ * Clase de prueba para la conexion con mongoDb
+ */
 public class ConexionMongoDb {
 
     public static void main(String[]args){

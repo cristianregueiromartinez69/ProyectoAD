@@ -5,6 +5,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * Ejemplo de controlador rest con swagger
+ */
 @RestController
 @RequestMapping(RestExample.MAPPING)
 public class RestExample {

@@ -1,6 +1,10 @@
 package com.cristian.bookmanage.registrousuarios.dto;
 
-
+/**
+ * Clase DTO que nos sirve de puente entre las entidades y el resto de la app
+ * @author cristian
+ * @version 1.0
+ */
 public class UsuarioRegistroDTO {
 
 

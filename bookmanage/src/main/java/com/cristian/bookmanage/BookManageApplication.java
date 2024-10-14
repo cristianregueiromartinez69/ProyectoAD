@@ -6,6 +6,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * Clase donde empieza a ejecutarse la aplicacion
+ * @author cristian
+ * @version 1.0
+ */
 @SpringBootApplication
 public class BookManageApplication{
 

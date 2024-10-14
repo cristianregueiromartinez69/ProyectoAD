@@ -8,8 +8,13 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+/**
+ * Clase repositorio que realiza las operaciones crud de manera rapida sin escribir consultas manualmente
+ * @author cristian
+ * @version 1.0
+ */
 @Repository
 public interface UsuarioRepositorioMongoDb extends MongoRepository<UsuarioRegistroDTO, String> {
 
-    Optional<UsuarioRegistroDTO> findByEmailAndPassword(String email, String password);
+    Optional<UsuarioRegistroDTO> findByEmailAndPassword(String email, String password); //consulta opcional para encontrar el email del usuario al iniciar sesion
 }

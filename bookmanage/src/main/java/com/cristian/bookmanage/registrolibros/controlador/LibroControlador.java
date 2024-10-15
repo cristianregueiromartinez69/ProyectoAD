@@ -1,8 +1,8 @@
-/*package com.cristian.bookmanage.registrolibros.controlador;
+package com.cristian.bookmanage.registrolibros.controlador;
 
 import com.cristian.bookmanage.registrolibros.dto.LibrosRegistroDTO;
 import com.cristian.bookmanage.registrolibros.servicio.LibroServicio;
-import com.cristian.bookmanage.registrolibros.servicio.MongoConnectionService;
+import com.cristian.bookmanage.registrousuarios.servicio.MongoConnectionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,8 +27,7 @@ public class LibroControlador {
     public ResponseEntity<String> registrarLibros(@RequestBody LibrosRegistroDTO librosRegistroDTO){
 
         libroServicio.saveBooks(librosRegistroDTO);
-        mongoConnectionService.save(librosRegistroDTO);
+        mongoConnectionService.saveBook(librosRegistroDTO);
         return new ResponseEntity<>("Libro registrado exitosamente", HttpStatus.CREATED);
     }
 }
-*/

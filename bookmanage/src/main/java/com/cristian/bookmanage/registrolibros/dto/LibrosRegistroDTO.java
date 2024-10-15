@@ -1,7 +1,8 @@
-/*package com.cristian.bookmanage.registrolibros.dto;
+package com.cristian.bookmanage.registrolibros.dto;
 
 
 import java.time.LocalDate;
+import java.util.Date;
 
 public class LibrosRegistroDTO {
 
@@ -11,11 +12,11 @@ public class LibrosRegistroDTO {
 
     private String nombre;
 
-    private LocalDate fechaLectura;
+    private Date fechaLectura;
 
-    private LocalDate fechaRegistro;
+    private Date fechaRegistro;
 
-    public LibrosRegistroDTO(String isbn, String autor, String nombre, LocalDate fechaLectura, LocalDate fechaRegistro) {
+    public LibrosRegistroDTO(String isbn, String autor, String nombre, Date fechaLectura, Date fechaRegistro) {
         this.isbn = isbn;
         this.autor = autor;
         this.nombre = nombre;
@@ -52,21 +53,20 @@ public class LibrosRegistroDTO {
         this.nombre = nombre;
     }
 
-    public LocalDate getFechaLectura() {
+    public Date getFechaLectura() {
         return fechaLectura;
     }
 
-    public void setFechaLectura(LocalDate fechaLectura) {
+    public void setFechaLectura(Date fechaLectura) {
         this.fechaLectura = fechaLectura;
     }
 
-    public LocalDate getFechaRegistro() {
+    public Date getFechaRegistro() {
         return fechaRegistro;
     }
 
-    public void setFechaRegistro(LocalDate fechaRegistro) {
+    public void setFechaRegistro(Date fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
 }
 
-*/

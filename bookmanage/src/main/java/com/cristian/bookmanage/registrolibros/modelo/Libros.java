@@ -1,9 +1,9 @@
-/*package com.cristian.bookmanage.registrolibros.modelo;
+package com.cristian.bookmanage.registrolibros.modelo;
 
 import jakarta.persistence.*;
 
-import java.sql.Date;
 import java.time.LocalDate;
+import java.util.Date;
 
 
 @Entity
@@ -21,12 +21,12 @@ public class Libros {
     private String nombre;
 
     @Column(name = "fecha_lectura")
-    private LocalDate fechaLectura;
+    private Date fechaLectura;
 
     @Column(name = "fecha_registro")
-    private LocalDate fechaRegistro;
+    private Date fechaRegistro;
 
-    public Libros(String isbn, String autor, String nombre, LocalDate fechaLectura, LocalDate fechaRegistro) {
+    public Libros(String isbn, String autor, String nombre, Date fechaLectura, Date fechaRegistro) {
         this.isbn = isbn;
         this.autor = autor;
         this.nombre = nombre;
@@ -62,20 +62,19 @@ public class Libros {
         this.nombre = nombre;
     }
 
-    public LocalDate getFechaLectura() {
+    public Date getFechaLectura() {
         return fechaLectura;
     }
 
-    public void setFechaLectura(LocalDate fechaLectura) {
+    public void setFechaLectura(Date fechaLectura) {
         this.fechaLectura = fechaLectura;
     }
 
-    public LocalDate getFechaRegistro() {
+    public Date getFechaRegistro() {
         return fechaRegistro;
     }
 
-    public void setFechaRegistro(LocalDate fechaRegistro) {
+    public void setFechaRegistro(Date fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
 }
-*/

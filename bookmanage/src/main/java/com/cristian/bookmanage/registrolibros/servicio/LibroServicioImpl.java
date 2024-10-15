@@ -1,4 +1,4 @@
-/*package com.cristian.bookmanage.registrolibros.servicio;
+package com.cristian.bookmanage.registrolibros.servicio;
 
 import com.cristian.bookmanage.registrolibros.dto.LibrosRegistroDTO;
 import com.cristian.bookmanage.registrolibros.modelo.Libros;
@@ -23,4 +23,3 @@ public class LibroServicioImpl implements LibroServicio{
     }
 
 }
-*/

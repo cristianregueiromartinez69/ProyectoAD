@@ -1,6 +1,7 @@
 package com.cristian.bookmanage.registrousuarios.servicio;
 
 import com.cristian.bookmanage.iniciosesionusuarios.modelo.DatosLogin;
+import com.cristian.bookmanage.registrolibros.dto.LibrosRegistroDTO;
 import com.cristian.bookmanage.registrousuarios.dto.UsuarioRegistroDTO;
 import com.cristian.bookmanage.registrousuarios.modelo.Usuarios;
 import com.cristian.bookmanage.registrousuarios.modelo.UsuariosMongoDb;
@@ -29,9 +30,6 @@ public class MongoConnectionService {
     private final MongoClient mongoClient;
     private final MongoDatabase mongoDatabase;
 
-    //inyeccion de dependencias con el repositorio de mongoDb
-    @Autowired
-    private UsuarioRepositorioMongoDb usuarioRepositorioMongoDb;
 
     /**
      * Contructor de la clase en el cual establecemos la conexion:
@@ -106,6 +104,32 @@ public class MongoConnectionService {
 
         return userExists;
 
+    }
+
+    /**
+     * Metodo para el registro libros a la base de mongoDb
+     * @param librosRegistroDTO el objeto registroDTO con los datos de registro del libro
+     */
+    public void saveBook(LibrosRegistroDTO librosRegistroDTO) {
+        /**
+         * Este es un objeto document que sigue las reglas de las colecciones de mongodb, por lo tanto nos sirve para introeducir datos
+         * creamos el objeto y añadimos con append los datos del objeto registroDTO
+         */
+        Document document = new Document("ISBN", librosRegistroDTO.getIsbn())
+                .append("Autor", librosRegistroDTO.getAutor())
+                .append("Nombre", librosRegistroDTO.getNombre())
+                .append("Fecha de lectura", librosRegistroDTO.getFechaLectura())
+                .append("Fecha de registro", librosRegistroDTO.getFechaRegistro());
+
+        /**
+         * Obtenemos la coleccion de la base de datos y con el metodo insertOne, insertamos los datos
+         */
+        try {
+            mongoDatabase.getCollection("libros").insertOne(document);
+            System.out.println("Libro guardado en MongoDB: " + document.toJson());
+        } catch (Exception e) {
+            System.out.println("Error al guardar en MongoDB: " + e.getMessage());
+        }
     }
 
 

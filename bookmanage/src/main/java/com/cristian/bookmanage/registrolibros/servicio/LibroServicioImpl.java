@@ -1,14 +1,18 @@
-package com.cristian.bookmanage.registrolibros.servicio;
+/*package com.cristian.bookmanage.registrolibros.servicio;
 
 import com.cristian.bookmanage.registrolibros.dto.LibrosRegistroDTO;
 import com.cristian.bookmanage.registrolibros.modelo.Libros;
 import com.cristian.bookmanage.registrolibros.repositorio.LibrosRepositorios;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class LibroServicioImpl implements LibroServicio{
 
     @Autowired
     private LibrosRepositorios librosRepositorios;
+
+
 
     @Override
     public Libros saveBooks(LibrosRegistroDTO libroRegistroDTO) {
@@ -19,3 +23,4 @@ public class LibroServicioImpl implements LibroServicio{
     }
 
 }
+*/

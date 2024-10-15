@@ -1,4 +1,4 @@
-package com.cristian.bookmanage.registrolibros.modelo;
+/*package com.cristian.bookmanage.registrolibros.modelo;
 
 import jakarta.persistence.*;
 
@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 
 @Entity
-@Table(name = "libros", uniqueConstraints = @UniqueConstraint(columnNames = "isbn"))
+@Table(name = "libros")
 public class Libros {
 
     @Id
@@ -78,3 +78,4 @@ public class Libros {
         this.fechaRegistro = fechaRegistro;
     }
 }
+*/

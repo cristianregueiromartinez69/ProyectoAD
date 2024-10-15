@@ -1,4 +1,4 @@
-package com.cristian.bookmanage.registrolibros.repositorio;
+/*package com.cristian.bookmanage.registrolibros.repositorio;
 
 import com.cristian.bookmanage.registrolibros.dto.LibrosRegistroDTO;
 import com.cristian.bookmanage.registrolibros.modelo.Libros;
@@ -10,3 +10,4 @@ public interface LibrosRepositorios extends JpaRepository <Libros, String> {
 
 
 }
+*/

@@ -11,6 +11,7 @@ import java.time.LocalDate;
 public class Libros {
 
     @Id
+    @Column(unique = true, name = "isbn")
     private String isbn;
 
     @Column(name = "autor")

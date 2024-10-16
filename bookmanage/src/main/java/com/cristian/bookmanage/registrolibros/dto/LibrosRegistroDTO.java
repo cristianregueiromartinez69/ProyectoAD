@@ -4,8 +4,14 @@ package com.cristian.bookmanage.registrolibros.dto;
 import java.time.LocalDate;
 import java.sql.Date;
 
+/**
+ * DT0 de la clase Libros que sirve de intermediaria entre la entidad y las demás capas de la aplicación
+ * @author cristian
+ * @version 1.0
+ */
 public class LibrosRegistroDTO {
 
+    //atributos privados de la clase
     private String isbn;
 
     private String autor;
@@ -16,6 +22,14 @@ public class LibrosRegistroDTO {
 
     private Date fechaRegistro;
 
+    /**
+     * Contructor de la clase
+     * @param isbn el isbn del libro que será la clave primaria
+     * @param autor el autor del libro
+     * @param nombre el nombre del libro
+     * @param fechaLectura la fecha de lectura del libro
+     * @param fechaRegistro la fecha en que fue registrado el libro
+     */
     public LibrosRegistroDTO(String isbn, String autor, String nombre, Date fechaLectura, Date fechaRegistro) {
         this.isbn = isbn;
         this.autor = autor;
@@ -29,6 +43,10 @@ public class LibrosRegistroDTO {
     }
 
 
+    /**
+     * getter y setter de la clase
+     * @return los atributos correspondientes
+     */
     public String getIsbn() {
         return isbn;
     }

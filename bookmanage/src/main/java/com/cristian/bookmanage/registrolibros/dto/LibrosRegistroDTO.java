@@ -2,7 +2,7 @@ package com.cristian.bookmanage.registrolibros.dto;
 
 
 import java.time.LocalDate;
-import java.util.Date;
+import java.sql.Date;
 
 public class LibrosRegistroDTO {
 

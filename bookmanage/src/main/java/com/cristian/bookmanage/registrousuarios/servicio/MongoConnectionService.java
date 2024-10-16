@@ -16,6 +16,7 @@ import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.Optional;
 
 /**
@@ -111,6 +112,12 @@ public class MongoConnectionService {
      * @param librosRegistroDTO el objeto registroDTO con los datos de registro del libro
      */
     public void saveBook(LibrosRegistroDTO librosRegistroDTO) {
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        String fechaLectura = dateFormat.format(librosRegistroDTO.getFechaLectura());
+        String fechaRegistro = dateFormat.format(librosRegistroDTO.getFechaRegistro());
+
         /**
          * Este es un objeto document que sigue las reglas de las colecciones de mongodb, por lo tanto nos sirve para introeducir datos
          * creamos el objeto y añadimos con append los datos del objeto registroDTO
@@ -118,8 +125,8 @@ public class MongoConnectionService {
         Document document = new Document("ISBN", librosRegistroDTO.getIsbn())
                 .append("Autor", librosRegistroDTO.getAutor())
                 .append("Nombre", librosRegistroDTO.getNombre())
-                .append("Fecha de lectura", librosRegistroDTO.getFechaLectura())
-                .append("Fecha de registro", librosRegistroDTO.getFechaRegistro());
+                .append("Fecha de lectura", fechaLectura)
+                .append("Fecha de registro", fechaRegistro);
 
         /**
          * Obtenemos la coleccion de la base de datos y con el metodo insertOne, insertamos los datos

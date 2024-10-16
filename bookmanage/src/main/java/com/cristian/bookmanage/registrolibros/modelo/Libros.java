@@ -3,7 +3,7 @@ package com.cristian.bookmanage.registrolibros.modelo;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.Date;
+import java.sql.Date;
 
 
 @Entity

@@ -14,6 +14,8 @@ import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class LibrosXMLSave {
@@ -24,15 +26,25 @@ public class LibrosXMLSave {
         this.filePath = filePath;
     }
 
-    public void saveBooksInXML(List<LibrosRegistroDTO>libroRegistroDTO){
+    public LibrosXMLSave() {
+    }
+    public void saveBooksInXML(List<LibrosRegistroDTO> libroRegistroDTO) {
 
         try {
             DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
-            Document document = documentBuilder.newDocument();
+            Document document;
 
-            Element root = document.createElement("Libros");
-            document.appendChild(root);
+            File xmlFile = new File(filePath);
+            if (xmlFile.exists()) {
+                document = documentBuilder.parse(xmlFile);
+            } else {
+                document = documentBuilder.newDocument();
+                Element root = document.createElement("Libros");
+                document.appendChild(root);
+            }
+
+            Element root = document.getDocumentElement();
 
             for (LibrosRegistroDTO libro : libroRegistroDTO) {
                 Element libroElement = document.createElement("Libro");
@@ -64,41 +76,45 @@ public class LibrosXMLSave {
             Transformer transformer = transformerFactory.newTransformer();
             transformer.setOutputProperty(OutputKeys.INDENT, "yes");
             DOMSource domSource = new DOMSource(document);
-            StreamResult streamResult = new StreamResult(createOrcheckFile(filePath));
+            StreamResult streamResult = new StreamResult(xmlFile);
 
             transformer.transform(domSource, streamResult);
 
             System.out.println("Libros guardados en XML: " + filePath);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
-    private String changeFormatDateToString(Date date){
 
 
-        return date.toString();
+    public String changeFormatDateToString(Date date) {
+        return (date != null) ? date.toString() : null;
     }
 
-    private File createOrcheckFile(String path){
-
+    public File createOrcheckFile(String path) {
         File file = new File(path);
-        if(file.exists() && file.isFile()){
-
+        if (file.exists() && file.isFile()) {
             return file;
-        }
-        else{
-            try{
-                if(file.createNewFile()){
+        } else {
+            try {
+                if (file.createNewFile()) {
                     return file;
                 }
-            }catch(IOException e){
+            } catch (IOException e) {
                 System.out.println("No se pudo crear el archivo");
             }
-
         }
-       return null;
+        return null;
     }
 
+    public Date changeStringToDate(String dateString) {
+        try {
+            return Date.valueOf(dateString);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error al convertir la cadena a fecha: " + e.getMessage());
+            return null;
+        }
+    }
 }

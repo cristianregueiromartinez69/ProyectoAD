@@ -6,14 +6,24 @@ import com.cristian.bookmanage.registrolibros.repositorio.LibrosRepositorios;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * Clase que funcionará como servicio de la aplicación. La lógica irá aquí y está será la capa intermedia entre el repositorio y el controlador
+ * @author cristian
+ * @version 1.0
+ */
 @Service
 public class LibroServicioImpl implements LibroServicio{
 
+    //inyectamos las dependencias del repositorio de libros en la variables
     @Autowired
     private LibrosRepositorios librosRepositorios;
 
 
-
+    /**
+     * Sobreescribimos el metodo ya que implementamos la interfaz y guardamos los libros
+     * @param libroRegistroDTO los datos de los libros a través de la dto
+     * @return el libro guardado a través del metodo del repositorio que guardará el libro en la base de datos
+     */
     @Override
     public Libros saveBooks(LibrosRegistroDTO libroRegistroDTO) {
         Libros libro = new Libros(libroRegistroDTO.getIsbn(), libroRegistroDTO.getAutor(),

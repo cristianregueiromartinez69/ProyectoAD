@@ -23,34 +23,35 @@ import java.util.List;
  * @version 1.0
  */
 @RestController
-@RequestMapping("/api/libro")
+@RequestMapping("api/libros")
 public class LibroControlador {
 
-
-    //inyectamos las dependecias en la variable de tipo LibroServicio y en la conexion de mongo
     @Autowired
     private LibroServicio libroServicio;
 
     @Autowired
     private MongoConnectionService mongoConnectionService;
 
-    LibrosXMLSave librosXMLSave = new LibrosXMLSave("bookmanage/src/xmlfiles/libros.xml");
-    List <LibrosRegistroDTO> misLibrosRegistrosXMl = new ArrayList<>();
+    @Autowired
+    private LibrosXMLSave librosXMLSave;
 
+    private List<LibrosRegistroDTO> misLibrosRegistrosXMl = new ArrayList<>();
 
-
-    /**
-     * Metodo post mapping que va a enviar informacion al servidor para registrar un libro
-     * @param librosRegistroDTO los datos de los libros
-     * @return una respuesta dependiendo de si hubo o no exito a la hora de registrar el libro
-     */
     @PostMapping
-    public ResponseEntity<String> registrarLibros(@RequestBody LibrosRegistroDTO librosRegistroDTO){
+    public ResponseEntity<String> registrarLibros(@RequestBody LibrosRegistroDTO librosRegistroDTO) {
 
         libroServicio.saveBooks(librosRegistroDTO);
+
         mongoConnectionService.saveBook(librosRegistroDTO);
+
         misLibrosRegistrosXMl.add(librosRegistroDTO);
-        librosXMLSave.saveBooksInXML(libroServicio.saveBooks(misLibrosRegistrosXMl));
+
+        librosXMLSave.saveBooksInXML(misLibrosRegistrosXMl);
+
         return new ResponseEntity<>("Libro registrado exitosamente", HttpStatus.CREATED);
     }
 }
+
+
+
+

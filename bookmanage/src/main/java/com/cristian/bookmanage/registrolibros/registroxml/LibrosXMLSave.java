@@ -1,6 +1,9 @@
 package com.cristian.bookmanage.registrolibros.registroxml;
 
 import com.cristian.bookmanage.registrolibros.dto.LibrosRegistroDTO;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -18,6 +21,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+
 public class LibrosXMLSave {
 
     private String filePath;
@@ -29,16 +33,21 @@ public class LibrosXMLSave {
     public LibrosXMLSave() {
     }
     public void saveBooksInXML(List<LibrosRegistroDTO> libroRegistroDTO) {
-
         try {
             DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
             Document document;
 
-            File xmlFile = new File(filePath);
-            if (xmlFile.exists()) {
+            File xmlFile = createOrcheckFile(filePath); // Crear o verificar el archivo
+            if (xmlFile == null) {
+                System.out.println("Error al crear el archivo XML.");
+                return;
+            }
+
+            if (xmlFile.length() > 0) { // Verifica si el archivo no está vacío
                 document = documentBuilder.parse(xmlFile);
             } else {
+                // Crear un nuevo documento si el archivo está vacío
                 document = documentBuilder.newDocument();
                 Element root = document.createElement("Libros");
                 document.appendChild(root);
@@ -86,6 +95,8 @@ public class LibrosXMLSave {
             e.printStackTrace();
         }
     }
+
+
 
 
 

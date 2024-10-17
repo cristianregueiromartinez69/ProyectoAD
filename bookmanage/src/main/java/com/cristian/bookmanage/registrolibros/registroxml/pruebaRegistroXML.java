@@ -9,7 +9,7 @@ import java.util.List;
 
 public class pruebaRegistroXML {
 
-    public static void main(String[]args){
+    public static void saveBokkXML(){
 
         LibrosXMLSave librosXMLSave = new LibrosXMLSave();
         List<LibrosRegistroDTO> librosRegistroDTOS = new ArrayList<>();

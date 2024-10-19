@@ -1,25 +1,32 @@
 package com.cristian.bookmanage.registrolibros.dto;
 
-
 import java.time.LocalDate;
 import java.sql.Date;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 /**
  * DT0 de la clase Libros que sirve de intermediaria entre la entidad y las demás capas de la aplicación
  * @author cristian
  * @version 1.0
  */
+@JacksonXmlRootElement(localName = "libro")
 public class LibrosRegistroDTO {
 
     //atributos privados de la clase
+    @JacksonXmlProperty(localName = "isbn")
     private String isbn;
 
+    @JacksonXmlProperty(localName = "autor")
     private String autor;
 
+    @JacksonXmlProperty(localName = "nombre")
     private String nombre;
 
+    @JacksonXmlProperty(localName = "fechaLectura")
     private Date fechaLectura;
 
+    @JacksonXmlProperty(localName = "fechaRegistro")
     private Date fechaRegistro;
 
     /**

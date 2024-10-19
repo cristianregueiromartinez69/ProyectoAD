@@ -27,6 +27,7 @@ import java.util.List;
 @RequestMapping("api/libros")
 public class LibroControlador {
 
+    //inyeccion de dependencias en las variables automaticamente
     @Autowired
     private LibroServicio libroServicio;
 
@@ -39,10 +40,14 @@ public class LibroControlador {
     @PostMapping
     public ResponseEntity<String> registrarLibros(@RequestBody LibrosRegistroDTO librosRegistroDTO) {
 
+        //guardamos los libros en las bass de datos
         libroServicio.saveBooks(librosRegistroDTO);
 
         mongoConnectionService.saveBook(librosRegistroDTO);
 
+        /**
+         * Intentamos guardar el xml, si no sale bien, salta un mensaje de error
+         */
         try{
             librosXMLSave.guardarLibroEnXML(librosRegistroDTO, "C:/Users/crm23/OneDrive/Escritorio/dam2Clase/Acceso a Datos/Proyecto/bookmanage/src/xmlfiles/libros.xml");
         }catch(IOException e){

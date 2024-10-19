@@ -43,6 +43,11 @@ public class UsuarioServicioImpl implements UsuarioServicio{
         return usuarioRepositorio.save(usuario);
     }
 
+    public boolean authenticationUserName(String name){
+
+        return name.length() >= 2;
+    }
+
 
 
 

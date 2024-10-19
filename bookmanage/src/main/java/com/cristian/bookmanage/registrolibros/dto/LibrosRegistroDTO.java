@@ -10,7 +10,6 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
  * @author cristian
  * @version 1.0
  */
-@JacksonXmlRootElement(localName = "libro")
 public class LibrosRegistroDTO {
 
     //atributos privados de la clase

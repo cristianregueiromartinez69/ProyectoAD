@@ -1,5 +1,6 @@
 package com.cristian.bookmanage.registrolibros.registroxml;
 
+import com.cristian.bookmanage.registrolibros.dto.LibroRegistroDTOWrapper;
 import com.cristian.bookmanage.registrolibros.dto.LibrosRegistroDTO;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import org.springframework.beans.factory.annotation.Value;
@@ -36,31 +37,23 @@ public class LibrosXMLSave {
         File file = new File(filePath);
         if (file.exists()) {
             try {
-                LibrosRegistroDTO[] librosArray = xmlMapper.readValue(file, LibrosRegistroDTO[].class);
-                for (LibrosRegistroDTO libro : librosArray) {
-                    librosList.add(libro);
-                }
+                LibroRegistroDTOWrapper wrapper = xmlMapper.readValue(file, LibroRegistroDTOWrapper.class);
+                librosList.addAll(wrapper.getLibro());
             } catch (IOException e) {
                 System.out.println("Error al leer el archivo existente: " + e.getMessage());
             }
         }
-
         librosList.add(librosRegistroDTO);
-           SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-           xmlMapper.setDateFormat(dateFormat);
-           xmlMapper.enable(SerializationFeature.INDENT_OUTPUT);
-           xmlMapper.writeValue(file, librosList);
 
+        LibroRegistroDTOWrapper wrapper = new LibroRegistroDTOWrapper(librosList);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        xmlMapper.setDateFormat(dateFormat);
+        xmlMapper.enable(SerializationFeature.INDENT_OUTPUT);
+        xmlMapper.writeValue(file, wrapper);
 
     }
 }
 
-/**
- *  XmlMapper xmlMapper = new XmlMapper();
- *         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
- *         xmlMapper.setDateFormat(dateFormat);
- *         xmlMapper.enable(SerializationFeature.INDENT_OUTPUT);
- *         xmlMapper.writeValue(new File(filePath), librosRegistroDTO);
- */
+
 
 

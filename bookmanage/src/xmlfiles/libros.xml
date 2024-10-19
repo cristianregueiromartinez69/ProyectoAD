@@ -1,0 +1,18 @@
+<Libros>
+  <libro>
+    <libro>
+      <isbn>es-12</isbn>
+      <autor>Panaceo</autor>
+      <nombre>enfermedades</nombre>
+      <fechaLectura>2024-02-19</fechaLectura>
+      <fechaRegistro>2024-10-19</fechaRegistro>
+    </libro>
+    <libro>
+      <isbn>es-13</isbn>
+      <autor>Panaceo</autor>
+      <nombre>enfermedades</nombre>
+      <fechaLectura>2024-02-19</fechaLectura>
+      <fechaRegistro>2024-10-19</fechaRegistro>
+    </libro>
+  </libro>
+</Libros>

@@ -12,7 +12,10 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
  */
 public class LibrosRegistroDTO {
 
-    //atributos privados de la clase
+    /**
+     * Atributos privados de la clase
+     * Las anotaciones que vemos, indican el nombre que van a tener los elementos del documento xml, es decir, los hijos del root
+     */
     @JacksonXmlProperty(localName = "isbn")
     private String isbn;
 

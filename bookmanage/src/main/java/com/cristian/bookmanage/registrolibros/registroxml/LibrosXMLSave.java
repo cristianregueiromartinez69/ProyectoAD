@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
@@ -28,12 +29,38 @@ public class LibrosXMLSave {
 
 
     public void guardarLibroEnXML(LibrosRegistroDTO librosRegistroDTO, String filePath) throws IOException {
+
         XmlMapper xmlMapper = new XmlMapper();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        xmlMapper.setDateFormat(dateFormat);
-        xmlMapper.enable(SerializationFeature.INDENT_OUTPUT);
-        xmlMapper.writeValue(new File(filePath), librosRegistroDTO);
+        List<LibrosRegistroDTO> librosList = new ArrayList<>();
+
+        File file = new File(filePath);
+        if (file.exists()) {
+            try {
+                LibrosRegistroDTO[] librosArray = xmlMapper.readValue(file, LibrosRegistroDTO[].class);
+                for (LibrosRegistroDTO libro : librosArray) {
+                    librosList.add(libro);
+                }
+            } catch (IOException e) {
+                System.out.println("Error al leer el archivo existente: " + e.getMessage());
+            }
+        }
+
+        librosList.add(librosRegistroDTO);
+           SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+           xmlMapper.setDateFormat(dateFormat);
+           xmlMapper.enable(SerializationFeature.INDENT_OUTPUT);
+        xmlMapper.writeValue(file, librosList);
+
+
     }
 }
+
+/**
+ *  XmlMapper xmlMapper = new XmlMapper();
+ *         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+ *         xmlMapper.setDateFormat(dateFormat);
+ *         xmlMapper.enable(SerializationFeature.INDENT_OUTPUT);
+ *         xmlMapper.writeValue(new File(filePath), librosRegistroDTO);
+ */
 
 

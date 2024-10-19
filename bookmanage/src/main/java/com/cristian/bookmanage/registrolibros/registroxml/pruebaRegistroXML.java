@@ -11,6 +11,7 @@ public class pruebaRegistroXML {
 
     public static void saveBokkXML(){
 
+        /**
         LibrosXMLSave librosXMLSave = new LibrosXMLSave();
         List<LibrosRegistroDTO> librosRegistroDTOS = new ArrayList<>();
         librosRegistroDTOS.add(new LibrosRegistroDTO("es2","cabiar", "tierras francesas de zorras", librosXMLSave.changeStringToDate("2020-12-02"),librosXMLSave.changeStringToDate("2019-02-18")));
@@ -18,6 +19,6 @@ public class pruebaRegistroXML {
         LibrosXMLSave librosXMLSave2 = new LibrosXMLSave("bookmanage/src/xmlfiles/libros.xml");
         librosXMLSave2.saveBooksInXML(librosRegistroDTOS);
 
-
+        **/
     }
 }

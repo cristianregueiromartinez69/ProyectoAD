@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,8 +36,6 @@ public class LibroControlador {
     @Autowired
     private LibrosXMLSave librosXMLSave;
 
-    private List<LibrosRegistroDTO> misLibrosRegistrosXMl = new ArrayList<>();
-
     @PostMapping
     public ResponseEntity<String> registrarLibros(@RequestBody LibrosRegistroDTO librosRegistroDTO) {
 
@@ -44,9 +43,11 @@ public class LibroControlador {
 
         mongoConnectionService.saveBook(librosRegistroDTO);
 
-        misLibrosRegistrosXMl.add(librosRegistroDTO);
-
-        librosXMLSave.saveBooksInXML(misLibrosRegistrosXMl);
+        try{
+            librosXMLSave.guardarLibroEnXML(librosRegistroDTO, "C:/Users/crm23/OneDrive/Escritorio/dam2Clase/Acceso a Datos/Proyecto/bookmanage/src/xmlfiles/libros.xml");
+        }catch(IOException e){
+            return new ResponseEntity<>("Ups, no se pudo registrar el libro en xml", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
 
         return new ResponseEntity<>("Libro registrado exitosamente", HttpStatus.CREATED);
     }

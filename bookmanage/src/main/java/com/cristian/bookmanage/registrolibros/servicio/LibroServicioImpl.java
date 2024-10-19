@@ -39,15 +39,7 @@ public class LibroServicioImpl implements LibroServicio {
         return librosRepositorios.save(libro);
     }
 
-    public List<LibrosRegistroDTO>formatLibrosToXml(LibrosRegistroDTO librosRegistroDTO) {
-        LibrosXMLSave librosXMLSave = new LibrosXMLSave();
-        List<LibrosRegistroDTO> misLibrosRegistrosXml = new ArrayList<>();
-        String fechaLectura = librosXMLSave.changeFormatDateToString(librosRegistroDTO.getFechaLectura());
-        String fechaRegistro = librosXMLSave.changeFormatDateToString(librosRegistroDTO.getFechaRegistro());
-        misLibrosRegistrosXml.add(new LibrosRegistroDTO(librosRegistroDTO.getIsbn(),librosRegistroDTO.getAutor(), librosRegistroDTO.getNombre(), librosXMLSave.changeStringToDate(fechaLectura),librosXMLSave.changeStringToDate(fechaRegistro)));
 
-        return misLibrosRegistrosXml;
-    }
 
 
 

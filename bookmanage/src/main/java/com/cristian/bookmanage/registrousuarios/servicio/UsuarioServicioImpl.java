@@ -13,11 +13,12 @@ import org.bson.Document;
 
 /**
  * Clase que funciona como servicio para implementar la logica y separar el repositorio del controlador
+ *
  * @author cristian
  * @version 1.0
  */
 @Service
-public class UsuarioServicioImpl implements UsuarioServicio{
+public class UsuarioServicioImpl implements UsuarioServicio {
 
     //variable del repositorio
     private UsuarioRepositorio usuarioRepositorio;
@@ -29,6 +30,7 @@ public class UsuarioServicioImpl implements UsuarioServicio{
 
     /**
      * metodo a implementar ya que estamos implementando la interfaz Usuario servicios
+     *
      * @param registroDTO el objeto de registro de los usuarios
      * @return el usuario registrado
      */
@@ -43,12 +45,50 @@ public class UsuarioServicioImpl implements UsuarioServicio{
         return usuarioRepositorio.save(usuario);
     }
 
-    public boolean authenticationUserName(String name){
+    /**
+     * Metodo para comprobar si un nombre tiene 2 o más letras (existen nombres con 2 letras, por ejemplo, Ed)
+     *
+     * @param name el nombre que le vamos a pasar
+     * @return True o False en caso de tener menos o mas letras
+     */
+    public boolean lengthUserName(String name) {
 
         return name.length() >= 2;
     }
 
+    public boolean isDigitUserName(String name) {
 
+        char[] numeros = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+        char[] chars = name.toCharArray();
+        for (char letra : chars) {
+
+            for(char numero:numeros){
+                if (letra == numero){
+                    return false;
+                }
+            }
+
+        }
+        return true;
+
+    }
+
+    public boolean strangeCharactersUsername(String name){
+        char[] caracteres = {'!', '|', '@', '"', '#', '·', '~', '$', '%', '€','¬','&','/','(',')','=','?','¿'
+        ,'¡','º','ª','<','>','+','-','*','^','[',']','¨','{','}',',',';',':','_'};
+        char[] chars = name.toCharArray();
+        for (char letra : chars) {
+
+            for(char numero:caracteres){
+                if (letra == numero){
+                    return false;
+                }
+            }
+
+        }
+        return true;
+
+    }
 
 
 }

@@ -14,21 +14,43 @@ public class TestUsuariosServicioImpl {
     private UsuarioServicioImpl usuarioServicio;
 
     @Test
-    void chechLengthUserNameTrueComprobation() {
+    void checkLengthUserNameTrueComprobation() {
 
-        boolean length = usuarioServicio.authenticationUserName("carlos");
+        boolean length = usuarioServicio.lengthUserName("carlos");
 
         Assertions.assertTrue(length);
 
     }
     @Test
-    void chechLengthUserNameFalseComprobation() {
+    void checkLengthUserNameFalseComprobation() {
 
-        boolean length = usuarioServicio.authenticationUserName("a");
+        boolean length = usuarioServicio.lengthUserName("a");
 
         Assertions.assertFalse(length);
 
     }
 
+    @Test
+    void CheckIfANameHasNumbersTrue(){
+        boolean number = usuarioServicio.isDigitUserName("Javier mancillo rodriguez");
+        Assertions.assertTrue(number);
+    }
+
+    @Test
+    void CheckIfANameHasNumbersFalse(){
+        boolean number = usuarioServicio.isDigitUserName("J123avier mancillo rodriguez");
+        Assertions.assertFalse(number);
+    }
+
+    @Test
+    void checkIfANameHasStrangerCharactersTrue(){
+        boolean thing = usuarioServicio.strangeCharactersUsername("Camión");
+        Assertions.assertTrue(thing);
+    }
+    @Test
+    void checkIfANameHasStrangerCharactersFalse(){
+        boolean thing = usuarioServicio.strangeCharactersUsername("Pepe de los monte?s");
+        Assertions.assertFalse(thing);
+    }
 
 }

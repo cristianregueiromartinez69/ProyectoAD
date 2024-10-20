@@ -138,6 +138,28 @@ public class UsuarioServicioImpl implements UsuarioServicio {
     }
 
 
+    /**
+     * Metodo para comprobar si el email lleva o no lleva aroba
+     * @param name el nombre a pasarle
+     * @return True o False dependiendo del nombre que le pasemos
+     */
+    public boolean checkEmailHasAAroba(String name){
+
+        //declaramos la variable char con el aroba y un array de letras del nombre a pasar
+        char aroba = '@';
+        char [] chars = name.toCharArray();
+
+        //bucle para buscar el @
+        for(char c : chars){
+
+            //si la encuentra devuelve true
+            if(c == aroba){
+                return true;
+            }
+
+        }
+        return false;
+    }
 
 
 }

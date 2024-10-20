@@ -75,4 +75,16 @@ public class TestUsuariosServicioImpl {
         boolean aroba = usuarioServicio.checkArobaEmailFirstLetter("@peregrino.com");
         Assertions.assertFalse(aroba);
     }
+
+    @Test
+    void checkIfAEmailHasAArobaAllSizeTrue(){
+        boolean aroba = usuarioServicio.checkEmailHasAAroba("federico@hotmail.com");
+        Assertions.assertTrue(aroba);
+    }
+
+    @Test
+    void checkIfAEmailHasAArobaAllSizeFalse(){
+        boolean aroba = usuarioServicio.checkEmailHasAAroba("federicogamil.com");
+        Assertions.assertFalse(aroba);
+    }
 }

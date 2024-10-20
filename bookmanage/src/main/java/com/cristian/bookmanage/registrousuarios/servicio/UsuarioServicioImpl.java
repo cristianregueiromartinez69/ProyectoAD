@@ -46,6 +46,16 @@ public class UsuarioServicioImpl implements UsuarioServicio {
     }
 
     /**
+     * Método que engloba a los metodos de autenticación de nombre al registrarse en la pagina web
+     * @param name el nombre a pasar
+     * @return True o False dependiendo del nombre introducido
+     */
+    public boolean authenticationRegisterName(String name){
+
+        return lengthUserName(name) && isDigitUserName(name) && strangeCharactersUsername(name);
+    }
+
+    /**
      * Metodo para comprobar si un nombre tiene 2 o más letras (existen nombres con 2 letras, por ejemplo, Ed)
      *
      * @param name el nombre que le vamos a pasar
@@ -104,12 +114,19 @@ public class UsuarioServicioImpl implements UsuarioServicio {
 
     }
 
+    /**
+     * Metodo que comprueba si la primera letra del email es un @
+     * @param name el nombre que pasamos
+     * @return True o False dependiendo del nombre
+     */
     public boolean checkArobaEmailFirstLetter(String name){
 
         char aroba = '@';
 
+        //hacemos un array de letras con el nombre
         char [] chars = name.toCharArray();
 
+        //comprobamos mediante un bucle si la primera letra es un @, si es así devuelve false
         for(int i = 0; i < chars.length; i++){
 
             if(chars[0] == aroba){

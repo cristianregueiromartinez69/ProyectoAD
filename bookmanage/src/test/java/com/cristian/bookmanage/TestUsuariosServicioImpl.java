@@ -54,6 +54,18 @@ public class TestUsuariosServicioImpl {
     }
 
     @Test
+    void checkAllPosibilitysRegisterNameTrue(){
+        boolean goodName = usuarioServicio.authenticationRegisterName("Javier garcía vázquez");
+        Assertions.assertTrue(goodName);
+    }
+    @Test
+    void checkAllPosibilitysRegisterNameFalse(){
+        boolean badname = usuarioServicio.authenticationRegisterName("Pe1dro castaños ?de los puentes");
+        Assertions.assertFalse(badname);
+    }
+
+
+    @Test
     void checkIfAEmailHasAArobaFirstLetterTrue(){
         boolean aroba = usuarioServicio.checkArobaEmailFirstLetter("peregrino@gmail.com");
         Assertions.assertTrue(aroba);

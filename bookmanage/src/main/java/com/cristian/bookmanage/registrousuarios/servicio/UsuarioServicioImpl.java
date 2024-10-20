@@ -55,6 +55,11 @@ public class UsuarioServicioImpl implements UsuarioServicio {
         return lengthUserName(name) && isDigitUserName(name) && strangeCharactersUsername(name);
     }
 
+    public boolean authenticationRegisterEmail(String email){
+
+        return checkArobaEmailFirstLetter(email) && checkEmailHasAAroba(email) && checkEmailHasAArobaMoreThan1Time(email);
+    }
+
     /**
      * Metodo para comprobar si un nombre tiene 2 o más letras (existen nombres con 2 letras, por ejemplo, Ed)
      *
@@ -116,15 +121,15 @@ public class UsuarioServicioImpl implements UsuarioServicio {
 
     /**
      * Metodo que comprueba si la primera letra del email es un @
-     * @param name el nombre que pasamos
+     * @param email el nombre que pasamos
      * @return True o False dependiendo del nombre
      */
-    public boolean checkArobaEmailFirstLetter(String name){
+    public boolean checkArobaEmailFirstLetter(String email){
 
         char aroba = '@';
 
         //hacemos un array de letras con el nombre
-        char [] chars = name.toCharArray();
+        char [] chars = email.toCharArray();
 
         //comprobamos mediante un bucle si la primera letra es un @, si es así devuelve false
         for(int i = 0; i < chars.length; i++){
@@ -140,14 +145,14 @@ public class UsuarioServicioImpl implements UsuarioServicio {
 
     /**
      * Metodo para comprobar si el email lleva o no lleva aroba
-     * @param name el nombre a pasarle
+     * @param email el nombre a pasarle
      * @return True o False dependiendo del nombre que le pasemos
      */
-    public boolean checkEmailHasAAroba(String name){
+    public boolean checkEmailHasAAroba(String email){
 
         //declaramos la variable char con el aroba y un array de letras del nombre a pasar
         char aroba = '@';
-        char [] chars = name.toCharArray();
+        char [] chars = email.toCharArray();
 
         //bucle para buscar el @
         for(char c : chars){
@@ -159,6 +164,79 @@ public class UsuarioServicioImpl implements UsuarioServicio {
 
         }
         return false;
+    }
+
+    /**
+     * Metodo para comprobar si el email lleva aroba más de 1 vez
+     * @param email el nombre a pasarle
+     * @return True o False dependiendo del nombre que le pasemos
+     */
+    public boolean checkEmailHasAArobaMoreThan1Time(String email){
+
+        //declaramos la variable char con el aroba y un array de letras del nombre a pasar
+        char aroba = '@';
+        char [] chars = email.toCharArray();
+        int contador = 0;
+
+        //bucle para buscar el @
+        for(char c : chars){
+
+            //si la encuentra devuelve true
+            if(c == aroba){
+                contador++;
+            }
+            if(contador > 1){
+                return false;
+            }
+
+        }
+        return true;
+    }
+
+    /**
+     * Metodo para comprobar si el email lleva o no lleva punto
+     * @param email el nombre a pasarle
+     * @return True o False dependiendo del nombre que le pasemos
+     */
+    public boolean checkEmailHasAAPoint(String email){
+
+        //declaramos la variable char con el punto y un array de letras del nombre a pasar
+        char punto = '.';
+        char [] chars = email.toCharArray();
+
+        //bucle para buscar el punto
+        for(char c : chars){
+
+            //si la encuentra devuelve true
+            if(c == punto){
+                return true;
+            }
+
+        }
+        return false;
+    }
+
+    /**
+     * Metodo que comprueba si la primera letra del email es un punto
+     * @param email el nombre que pasamos
+     * @return True o False dependiendo del nombre
+     */
+    public boolean checkPuntoEmailFirstLetter(String email){
+
+        char punto = '.';
+
+        //hacemos un array de letras con el nombre
+        char [] chars = email.toCharArray();
+
+        //comprobamos mediante un bucle si la primera letra es un punto, si es así devuelve false
+        for(int i = 0; i < chars.length; i++){
+
+            if(chars[0] == punto){
+                return false;
+            }
+        }
+        return true;
+
     }
 
 

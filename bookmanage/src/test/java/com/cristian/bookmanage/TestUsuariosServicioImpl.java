@@ -87,4 +87,52 @@ public class TestUsuariosServicioImpl {
         boolean aroba = usuarioServicio.checkEmailHasAAroba("federicogamil.com");
         Assertions.assertFalse(aroba);
     }
+
+    @Test
+    void checkIfAEmailHasAArobaAllSizeMoreThan1TimeTrue(){
+        boolean aroba = usuarioServicio.checkEmailHasAArobaMoreThan1Time("carlos@hotmail.com");
+        Assertions.assertTrue(aroba);
+    }
+    @Test
+    void checkIfAEmailHasAArobaAllSizeMoreThan1TimeFalse(){
+        boolean aroba = usuarioServicio.checkEmailHasAArobaMoreThan1Time("carlos@hotma@il.com");
+        Assertions.assertFalse(aroba);
+    }
+
+    @Test
+    void checkIfAEmailHasAPuntoFirstLetterTrue(){
+        boolean punto = usuarioServicio.checkPuntoEmailFirstLetter("carlos@gmail.com");
+        Assertions.assertTrue(punto);
+    }
+
+    @Test
+    void checkIfAEmailHasAPuntoFirstLetterFalse(){
+        boolean punto = usuarioServicio.checkPuntoEmailFirstLetter(".carlos@gmail.com");
+        Assertions.assertFalse(punto);
+    }
+
+    @Test
+    void checkIfAEmailHasAPuntoAllSizeTrue(){
+        boolean punto = usuarioServicio.checkEmailHasAAPoint("carlos@gmail.com");
+        Assertions.assertTrue(punto);
+    }
+
+    @Test
+    void checkIfAEmailHasAPuntoAllSizeFalse(){
+        boolean punto = usuarioServicio.checkEmailHasAAPoint("carlos@gmailcom");
+        Assertions.assertFalse(punto);
+    }
+
+
+    @Test
+    void authenticationAllRegisterEmailTrue(){
+        boolean email = usuarioServicio.authenticationRegisterEmail("mariavazquez@gmail.com");
+        Assertions.assertTrue(email);
+    }
+
+    @Test
+    void authenticationAllRegisterEmailFalse(){
+        boolean email = usuarioServicio.authenticationRegisterEmail("mariavazquez@gmail.com@");
+        Assertions.assertFalse(email);
+    }
 }

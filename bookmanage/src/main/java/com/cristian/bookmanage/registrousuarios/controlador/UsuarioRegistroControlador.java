@@ -1,6 +1,7 @@
 package com.cristian.bookmanage.registrousuarios.controlador;
 
 import com.cristian.bookmanage.registrousuarios.dto.UsuarioRegistroDTO;
+import com.cristian.bookmanage.registrousuarios.excepciones.NombreRegistroExcepcion;
 import com.cristian.bookmanage.registrousuarios.servicio.MongoConnectionService;
 import com.cristian.bookmanage.registrousuarios.servicio.UsuarioServicio;
 import org.springframework.http.HttpStatus;
@@ -34,9 +35,14 @@ public class UsuarioRegistroControlador {
     @PostMapping
     public ResponseEntity<String> registrarCuentaUsuario(@RequestBody UsuarioRegistroDTO registroDTO) {
         //llamamos a los metodos de las interfaces para guardar la información
-        usuarioServicio.save(registroDTO);
-        mongoConnectionService.save(registroDTO);
-        return new ResponseEntity<>("Usuario registrado exitosamente", HttpStatus.CREATED);
+        try{
+            usuarioServicio.save(registroDTO);
+            mongoConnectionService.save(registroDTO);
+            return new ResponseEntity<>("Usuario registrado exitosamente", HttpStatus.CREATED);
+        }catch(NombreRegistroExcepcion nombreException){
+            return new ResponseEntity<>("formato de nombre incorrecto, vuelve a intentarlo", HttpStatus.UNAUTHORIZED);
+        }
+
     }
 
 

@@ -123,6 +123,18 @@ public class TestUsuariosServicioImpl {
         Assertions.assertFalse(punto);
     }
 
+    @Test
+    void checkIfAEmailHasAPuntoMoreThan1TimeTrue(){
+        boolean punto = usuarioServicio.checkEmailHasAPointMoreThan1Time("carlos@gmail.com");
+        Assertions.assertTrue(punto);
+    }
+
+    @Test
+    void checkIfAEmailHasAPuntoMoreThan1TimeFalse(){
+        boolean punto = usuarioServicio.checkEmailHasAPointMoreThan1Time("car.los@gmail.com");
+        Assertions.assertFalse(punto);
+    }
+
 
     @Test
     void authenticationAllRegisterEmailTrue(){
@@ -132,7 +144,7 @@ public class TestUsuariosServicioImpl {
 
     @Test
     void authenticationAllRegisterEmailFalse(){
-        boolean email = usuarioServicio.authenticationRegisterEmail("mariavazquez@gmail.com@");
+        boolean email = usuarioServicio.authenticationRegisterEmail("mariavazque@gmail.com.");
         Assertions.assertFalse(email);
     }
 }

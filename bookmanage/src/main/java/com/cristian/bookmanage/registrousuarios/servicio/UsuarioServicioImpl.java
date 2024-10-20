@@ -57,7 +57,8 @@ public class UsuarioServicioImpl implements UsuarioServicio {
 
     public boolean authenticationRegisterEmail(String email){
 
-        return checkArobaEmailFirstLetter(email) && checkEmailHasAAroba(email) && checkEmailHasAArobaMoreThan1Time(email);
+        return checkArobaEmailFirstLetter(email) && checkEmailHasAAroba(email) && checkEmailHasAArobaMoreThan1Time(email) &&
+                checkPuntoEmailFirstLetter(email) && checkEmailHasAAPoint(email) && checkEmailHasAPointMoreThan1Time(email);
     }
 
     /**
@@ -237,6 +238,33 @@ public class UsuarioServicioImpl implements UsuarioServicio {
         }
         return true;
 
+    }
+
+    /**
+     * Metodo para comprobar si el email lleva punto más de 1 vez
+     * @param email el nombre a pasarle
+     * @return True o False dependiendo del nombre que le pasemos
+     */
+    public boolean checkEmailHasAPointMoreThan1Time(String email){
+
+        //declaramos la variable char con el punto y un array de letras del nombre a pasar
+        char punto = '.';
+        char [] chars = email.toCharArray();
+        int contador = 0;
+
+        //bucle para buscar el @
+        for(char c : chars){
+
+            //si la encuentra devuelve true
+            if(c == punto){
+                contador++;
+            }
+            if(contador > 1){
+                return false;
+            }
+
+        }
+        return true;
     }
 
 

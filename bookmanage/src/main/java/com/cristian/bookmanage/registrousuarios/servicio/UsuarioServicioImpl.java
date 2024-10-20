@@ -267,5 +267,15 @@ public class UsuarioServicioImpl implements UsuarioServicio {
         return true;
     }
 
+    public boolean checkStrangeThingInEmail(String email){
+
+        char [] strangeCharacters = {' ', '!', '#', '$', '%', '^', '&', '*', '(', ')', '=', '[', ']',
+        '<', '>', ',', '"', '/', ';', '?'};
+
+
+
+        return false;
+    }
+
 
 }

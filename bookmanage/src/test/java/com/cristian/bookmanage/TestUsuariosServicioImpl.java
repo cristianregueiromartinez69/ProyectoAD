@@ -49,8 +49,18 @@ public class TestUsuariosServicioImpl {
     }
     @Test
     void checkIfANameHasStrangerCharactersFalse(){
-        boolean thing = usuarioServicio.strangeCharactersUsername("Pepe de los monte?s");
+        boolean thing = usuarioServicio.strangeCharactersUsername("Pepe de los monte´s");
         Assertions.assertFalse(thing);
     }
 
+    @Test
+    void checkIfAEmailHasAArobaFirstLetterTrue(){
+        boolean aroba = usuarioServicio.checkArobaEmailFirstLetter("peregrino@gmail.com");
+        Assertions.assertTrue(aroba);
+    }
+    @Test
+    void checkIfAEmailHasAArobaFirstLetterFalse(){
+        boolean aroba = usuarioServicio.checkArobaEmailFirstLetter("@peregrino.com");
+        Assertions.assertFalse(aroba);
+    }
 }

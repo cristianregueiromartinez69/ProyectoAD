@@ -56,12 +56,20 @@ public class UsuarioServicioImpl implements UsuarioServicio {
         return name.length() >= 2;
     }
 
+    /**
+     * Método para comprobar que no se introducen numeros en el nombre de una persona
+     * @param name el nombre a introducir
+     * @return True o False dependiendo del nombre que introdujeras
+     */
     public boolean isDigitUserName(String name) {
 
+        //se realiza un array de chars con los numeros y un array de chars con el string
         char[] numeros = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
         char[] chars = name.toCharArray();
+        //con un bucle recorremos el array de letras y con otro anidado el de numeros
         for (char letra : chars) {
 
+            //si alguna letra coincide con un numero, el metodo devuelve false
             for(char numero:numeros){
                 if (letra == numero){
                     return false;
@@ -73,9 +81,15 @@ public class UsuarioServicioImpl implements UsuarioServicio {
 
     }
 
+    /**
+     * Método para comprobar que no se introducen carácteres extraños en los nombres de registro
+     * @param name el nombre que vas a introducir
+     * @return True o False dependiendo del nombre introducido
+     */
     public boolean strangeCharactersUsername(String name){
+        //mismo procedimiento que en el método anterior pero con caracteres extraños
         char[] caracteres = {'!', '|', '@', '"', '#', '·', '~', '$', '%', '€','¬','&','/','(',')','=','?','¿'
-        ,'¡','º','ª','<','>','+','-','*','^','[',']','¨','{','}',',',';',':','_'};
+        ,'¡','º','ª','<','>','+','-','*','^','[',']','¨','{','}',',',';',':','_','`','´'};
         char[] chars = name.toCharArray();
         for (char letra : chars) {
 
@@ -89,6 +103,24 @@ public class UsuarioServicioImpl implements UsuarioServicio {
         return true;
 
     }
+
+    public boolean checkArobaEmailFirstLetter(String name){
+
+        char aroba = '@';
+
+        char [] chars = name.toCharArray();
+
+        for(int i = 0; i < chars.length; i++){
+
+            if(chars[0] == aroba){
+                return false;
+            }
+        }
+        return true;
+
+    }
+
+
 
 
 }

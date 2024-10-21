@@ -1,6 +1,7 @@
 package com.cristian.bookmanage.registrousuarios.servicio;
 
 import com.cristian.bookmanage.registrousuarios.dto.UsuarioRegistroDTO;
+import com.cristian.bookmanage.registrousuarios.excepciones.EmailRegistroExcepcion;
 import com.cristian.bookmanage.registrousuarios.excepciones.NombreRegistroExcepcion;
 import com.cristian.bookmanage.registrousuarios.modelo.Usuarios;
 
@@ -12,6 +13,6 @@ import com.cristian.bookmanage.registrousuarios.modelo.Usuarios;
 public interface UsuarioServicio {
 
     //metodo que guarda usuarios con los datos del objeto usuarioRegistroDTO
-    public Usuarios save(UsuarioRegistroDTO registroDTO) throws NombreRegistroExcepcion;
+    public Usuarios save(UsuarioRegistroDTO registroDTO) throws NombreRegistroExcepcion, EmailRegistroExcepcion;
 
 }

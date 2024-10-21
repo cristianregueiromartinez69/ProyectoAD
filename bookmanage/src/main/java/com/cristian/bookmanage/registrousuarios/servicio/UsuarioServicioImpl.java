@@ -1,10 +1,13 @@
 package com.cristian.bookmanage.registrousuarios.servicio;
 
 import com.cristian.bookmanage.registrousuarios.dto.UsuarioRegistroDTO;
+import com.cristian.bookmanage.registrousuarios.excepciones.EmailRegistroExcepcion;
 import com.cristian.bookmanage.registrousuarios.excepciones.NombreRegistroExcepcion;
 import com.cristian.bookmanage.registrousuarios.modelo.Usuarios;
 import com.cristian.bookmanage.registrousuarios.repositorio.UsuarioRepositorio;
 import org.springframework.stereotype.Service;
+
+import java.sql.SQLException;
 
 /**
  * Clase que funciona como servicio para implementar la logica y separar el repositorio del controlador
@@ -30,10 +33,13 @@ public class UsuarioServicioImpl implements UsuarioServicio {
      * @return el usuario registrado
      */
     @Override
-    public Usuarios save(UsuarioRegistroDTO registroDTO) throws NombreRegistroExcepcion {
+    public Usuarios save(UsuarioRegistroDTO registroDTO) throws NombreRegistroExcepcion, EmailRegistroExcepcion {
 
         if(!authenticationRegisterName(registroDTO.getNombre())){
             throw new NombreRegistroExcepcion("Formato nombre incorrecto");
+        }
+        else if(!authenticationRegisterEmail(registroDTO.getEmail())){
+            throw new EmailRegistroExcepcion("Formato email incorrecto");
         }
         else{
             Usuarios usuario = new Usuarios(registroDTO.getId(),
@@ -313,6 +319,12 @@ public class UsuarioServicioImpl implements UsuarioServicio {
         }
 
         return false;
+    }
+
+
+    public boolean checkLengthPassword(String password){
+
+        return password.length() >= 12;
     }
 
 

@@ -1,12 +1,15 @@
 package com.cristian.bookmanage.registrousuarios.controlador;
 
 import com.cristian.bookmanage.registrousuarios.dto.UsuarioRegistroDTO;
+import com.cristian.bookmanage.registrousuarios.excepciones.EmailRegistroExcepcion;
 import com.cristian.bookmanage.registrousuarios.excepciones.NombreRegistroExcepcion;
 import com.cristian.bookmanage.registrousuarios.servicio.MongoConnectionService;
 import com.cristian.bookmanage.registrousuarios.servicio.UsuarioServicio;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.sql.SQLException;
 
 /**
  * Endpoint de swagger para comprobar los registros de usuario en la aplicacion
@@ -41,6 +44,8 @@ public class UsuarioRegistroControlador {
             return new ResponseEntity<>("Usuario registrado exitosamente", HttpStatus.CREATED);
         }catch(NombreRegistroExcepcion nombreException){
             return new ResponseEntity<>("formato de nombre incorrecto, vuelve a intentarlo", HttpStatus.UNAUTHORIZED);
+        }catch (EmailRegistroExcepcion emailException){
+            return new ResponseEntity<>("Formato de email incorrecto, vuelve a intentarlo", HttpStatus.UNAUTHORIZED);
         }
 
     }

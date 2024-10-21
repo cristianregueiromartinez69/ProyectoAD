@@ -169,4 +169,17 @@ public class TestUsuariosServicioImpl {
         boolean email = usuarioServicio.authenticationRegisterEmail("mariavazque@gmail.cam");
         Assertions.assertFalse(email);
     }
+
+    @Test
+    void checkLengthRegisterPasswordTrue(){
+        boolean password = usuarioServicio.checkLengthPassword("123456789lal");
+        Assertions.assertTrue(password);
+    }
+
+    @Test
+    void checkLengthRegisterPasswordFalse(){
+        boolean password = usuarioServicio.checkLengthPassword("1234567");
+        Assertions.assertFalse(password);
+    }
+
 }

@@ -69,6 +69,16 @@ public class UsuarioServicioImpl implements UsuarioServicio {
     }
 
     /**
+     * Método para comprobar autenticación de contraseña en registro de usuario
+     * @param password la contraseña
+     * @return true o false dependiendo de si la introduces bien o mal
+     */
+    public boolean authenticationRegisterPassword(String password){
+        return checkLengthPassword(password) && checkPasswordHasStrangeThings(password) &&
+                checkPaswordHasNumbers(password);
+    }
+
+    /**
      * Metodo para comprobar si un nombre tiene 2 o más letras (existen nombres con 2 letras, por ejemplo, Ed)
      *
      * @param name el nombre que le vamos a pasar
@@ -322,9 +332,63 @@ public class UsuarioServicioImpl implements UsuarioServicio {
     }
 
 
+    /**
+     * Método para comprobar si la contraseña del usuario tiene 12 o más caracteres
+     * @param password la contraseña proporcionada
+     * @return true o false si cumple los requisitios
+     */
     public boolean checkLengthPassword(String password){
 
         return password.length() >= 12;
+    }
+
+    /**
+     * Método para comprobar si la contraseña introducida tiene al menos 1 caracter especial
+     * @param password la contraseña introducida
+     * @return true o false dependiendo de la contraseña
+     */
+    public boolean checkPasswordHasStrangeThings(String password){
+        //array con los caracteres especiales
+        char[] caracteres = {'!', '|', '@', '"', '#', '·', '~', '$', '%', '€','¬','&','/','(',')','=','?','¿'
+                ,'¡','<','>','+','-','*','^','[',']','¨','{','}',',',';',':','_','`','´'};
+
+        //array de letras de la contraseña
+        char [] passwordChars = password.toCharArray();
+
+        //bucle for anidado para comprobar si hay coincidencias
+        for(int i = 0; i < caracteres.length; i++){
+            for(int j = 0; j < passwordChars.length; j++){
+                if(passwordChars[j] == caracteres[i]){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Método para comprobar que la contraseña tiene al menos 1 número
+     * @param password la contraseña introducida
+     * @return true o false dependiendo de la contraseña proporcionada
+     */
+    public boolean checkPaswordHasNumbers(String password){
+
+        //array de numeros
+        char [] numbers = {'1','2','3','4','5','6','7','8','9','0'};
+
+        //array de letras de la contraseña
+        char [] passwordChars = password.toCharArray();
+
+        //bucle anidado para comprobar la coincidencia
+        for(int i = 0; i < numbers.length; i++){
+            for(int j = 0; j < passwordChars.length; j++){
+                if(numbers[i] == passwordChars[j]){
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
 

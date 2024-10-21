@@ -182,4 +182,41 @@ public class TestUsuariosServicioImpl {
         Assertions.assertFalse(password);
     }
 
+    @Test
+    void checkIfAPasswordHaveSpecialCharactersTrue(){
+        boolean password = usuarioServicio.checkPasswordHasStrangeThings("12345$njnfn¨¨");
+        Assertions.assertTrue(password);
+    }
+
+    @Test
+    void checkIfAPasswordHaveSpecialCharactersFalse(){
+        boolean password = usuarioServicio.checkPasswordHasStrangeThings("123456789023fff");
+        Assertions.assertFalse(password);
+    }
+
+    @Test
+    void checkIfAPasswordHaveNumbersTrue(){
+        boolean password = usuarioServicio.checkPaswordHasNumbers("12345$njnfn¨¨");
+        Assertions.assertTrue(password);
+    }
+
+    @Test
+    void checkIfAPasswordHaveNumbersFalse(){
+        boolean password = usuarioServicio.checkPaswordHasNumbers("kakakaka");
+        Assertions.assertFalse(password);
+    }
+
+    @Test
+    void checkIfAPasswordIsValidateTrue(){
+        boolean password = usuarioServicio.authenticationRegisterPassword("cristiano#siuu1");
+        Assertions.assertTrue(password);
+    }
+
+    @Test
+    void checkIfAPasswordIsValidateFalse(){
+        boolean password = usuarioServicio.authenticationRegisterPassword("123456789");
+        Assertions.assertFalse(password);
+    }
+
+
 }

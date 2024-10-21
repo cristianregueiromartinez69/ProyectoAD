@@ -3,6 +3,7 @@ package com.cristian.bookmanage.registrousuarios.controlador;
 import com.cristian.bookmanage.registrousuarios.dto.UsuarioRegistroDTO;
 import com.cristian.bookmanage.registrousuarios.excepciones.EmailRegistroExcepcion;
 import com.cristian.bookmanage.registrousuarios.excepciones.NombreRegistroExcepcion;
+import com.cristian.bookmanage.registrousuarios.excepciones.PasswordRegistroExcepcion;
 import com.cristian.bookmanage.registrousuarios.servicio.MongoConnectionService;
 import com.cristian.bookmanage.registrousuarios.servicio.UsuarioServicio;
 import org.springframework.http.HttpStatus;
@@ -46,6 +47,8 @@ public class UsuarioRegistroControlador {
             return new ResponseEntity<>("formato de nombre incorrecto, vuelve a intentarlo", HttpStatus.UNAUTHORIZED);
         }catch (EmailRegistroExcepcion emailException){
             return new ResponseEntity<>("Formato de email incorrecto, vuelve a intentarlo", HttpStatus.UNAUTHORIZED);
+        }catch(PasswordRegistroExcepcion passEx){
+            return new ResponseEntity<>("Formato contraseña erroneo, debe ser de 12 o más carácteres, llevar mínimo 1 numero y 1 carácter especial, vuelve a intentarlo", HttpStatus.UNAUTHORIZED);
         }
 
     }

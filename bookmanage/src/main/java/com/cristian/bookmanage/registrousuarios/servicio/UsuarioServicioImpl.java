@@ -3,6 +3,7 @@ package com.cristian.bookmanage.registrousuarios.servicio;
 import com.cristian.bookmanage.registrousuarios.dto.UsuarioRegistroDTO;
 import com.cristian.bookmanage.registrousuarios.excepciones.EmailRegistroExcepcion;
 import com.cristian.bookmanage.registrousuarios.excepciones.NombreRegistroExcepcion;
+import com.cristian.bookmanage.registrousuarios.excepciones.PasswordRegistroExcepcion;
 import com.cristian.bookmanage.registrousuarios.modelo.Usuarios;
 import com.cristian.bookmanage.registrousuarios.repositorio.UsuarioRepositorio;
 import org.springframework.stereotype.Service;
@@ -33,15 +34,17 @@ public class UsuarioServicioImpl implements UsuarioServicio {
      * @return el usuario registrado
      */
     @Override
-    public Usuarios save(UsuarioRegistroDTO registroDTO) throws NombreRegistroExcepcion, EmailRegistroExcepcion {
+    public Usuarios save(UsuarioRegistroDTO registroDTO) throws NombreRegistroExcepcion, EmailRegistroExcepcion, PasswordRegistroExcepcion {
 
         if(!authenticationRegisterName(registroDTO.getNombre())){
             throw new NombreRegistroExcepcion("Formato nombre incorrecto");
         }
         else if(!authenticationRegisterEmail(registroDTO.getEmail())){
             throw new EmailRegistroExcepcion("Formato email incorrecto");
-        }
-        else{
+        } else if (!authenticationRegisterPassword(registroDTO.getPassword())) {
+
+            throw new PasswordRegistroExcepcion("Formato contraseña erroneo");
+        } else{
             Usuarios usuario = new Usuarios(registroDTO.getId(),
                     registroDTO.getNombre(), registroDTO.getEmail(),
                     registroDTO.getPassword());

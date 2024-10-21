@@ -148,6 +148,17 @@ public class TestUsuariosServicioImpl {
     }
 
     @Test
+    void checkIfAEmailHasAValidateDomainTrue(){
+        boolean domain = usuarioServicio.checkDomainEmail("carlos@gmail.com");
+        Assertions.assertTrue(domain);
+    }
+    @Test
+    void checkIfAEmailHasAValidateDomainFalse(){
+        boolean domain = usuarioServicio.checkDomainEmail("carlos@gmail.coooom");
+        Assertions.assertFalse(domain);
+    }
+
+    @Test
     void authenticationAllRegisterEmailTrue(){
         boolean email = usuarioServicio.authenticationRegisterEmail("mariavazquez@gmail.com");
         Assertions.assertTrue(email);
@@ -155,7 +166,7 @@ public class TestUsuariosServicioImpl {
 
     @Test
     void authenticationAllRegisterEmailFalse(){
-        boolean email = usuarioServicio.authenticationRegisterEmail("mariavazque@gmail.com.");
+        boolean email = usuarioServicio.authenticationRegisterEmail("mariavazque@gmail.cam");
         Assertions.assertFalse(email);
     }
 }

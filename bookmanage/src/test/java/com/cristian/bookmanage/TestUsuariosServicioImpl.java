@@ -135,6 +135,17 @@ public class TestUsuariosServicioImpl {
         Assertions.assertFalse(punto);
     }
 
+    @Test
+    void chechIfAEmailHasAStrangeCaracteresTrue(){
+        boolean strangeThigs = usuarioServicio.checkStrangeThingInEmail("carlos@gmail.com");
+        Assertions.assertTrue(strangeThigs);
+    }
+
+    @Test
+    void chechIfAEmailHasAStrangeCaracteresFalse(){
+        boolean strangeThigs = usuarioServicio.checkStrangeThingInEmail("car[lo=s@gmail.com");
+        Assertions.assertFalse(strangeThigs);
+    }
 
     @Test
     void authenticationAllRegisterEmailTrue(){

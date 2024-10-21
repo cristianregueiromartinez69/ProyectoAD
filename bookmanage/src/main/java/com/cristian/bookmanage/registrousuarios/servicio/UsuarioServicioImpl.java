@@ -272,9 +272,17 @@ public class UsuarioServicioImpl implements UsuarioServicio {
         char [] strangeCharacters = {' ', '!', '#', '$', '%', '^', '&', '*', '(', ')', '=', '[', ']',
         '<', '>', ',', '"', '/', ';', '?'};
 
+        char[] chars = email.toCharArray();
+        for (char letra : chars) {
 
+            for(char letraRara:strangeCharacters){
+                if (letra == letraRara){
+                    return false;
+                }
+            }
 
-        return false;
+        }
+        return true;
     }
 
 

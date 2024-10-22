@@ -40,6 +40,24 @@ public class LibroServicioImpl implements LibroServicio {
     }
 
 
+    /**
+     * Método para comprobar si el isbn empieza por los prefijos correctos
+     * @param isbn el isbn proporcionado
+     * @return true o false dependiendo del isbn que introduzcas
+     */
+    public boolean checkStartIsbn(String isbn){
+
+        //array con los prefijos correctos del isbn
+        String [] prefixes = {"978-","979-"};
+
+        //bucle para comprobar la coincidencia
+        for(int i =0; i < prefixes.length; i++){
+            if(isbn.startsWith(prefixes[i])){
+                return true;
+            }
+        }
+        return false;
+    }
 
 
 

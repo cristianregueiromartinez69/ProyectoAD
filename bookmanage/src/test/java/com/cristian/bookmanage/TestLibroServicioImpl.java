@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 @SpringBootTest
 public class TestLibroServicioImpl {
 
@@ -32,5 +34,24 @@ public class TestLibroServicioImpl {
     void checkIfAIsbnHasMoreThan1TimeAGuionFalse(){
         boolean guion = libroServicio.checkIsbnHasMoreThan1TimeGuion("978-12");
         Assertions.assertFalse(guion);
+    }
+
+    @Test
+    void checkSplitIsbnTrue(){
+
+        String isbn = "978-3-16-148410-0";
+
+        String[] result = libroServicio.returnListDigitsIsbn(isbn);
+
+        assertThat(result).containsExactly("978", "3", "16", "148410", "0");
+    }
+
+    @Test
+    void checkAddAndConvertStringsInIntsIsbnTrue(){
+        String[] isbnSeparado = {"978", "3", "16", "148410", "0"};
+
+        int[] result = libroServicio.addDigitsIsbn(isbnSeparado);
+
+        assertThat(result).containsExactly(978, 3, 16, 148410, 0);
     }
 }

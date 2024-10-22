@@ -87,5 +87,25 @@ public class LibroServicioImpl implements LibroServicio {
         return false;
     }
 
+    /**
+     * Método para devolver un array de Strings a partir del isbn proporcionado
+     * @param isbn el isbn proporcionado
+     * @return el array de Strings con los numeros
+     */
+    public String [] returnListDigitsIsbn(String isbn){
+
+        return isbn.split("-");
+    }
+
+    public int [] addDigitsIsbn(String [] isbnSeparado){
+
+        int [] numeroPasadoAInt = new int[isbnSeparado.length];
+        for(int i = 0; i < isbnSeparado.length; i++){
+            int numero = Integer.parseInt(isbnSeparado[i]);
+            numeroPasadoAInt[i] = numero;
+        }
+        return numeroPasadoAInt;
+    }
+
 
 }

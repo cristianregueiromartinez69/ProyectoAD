@@ -50,8 +50,8 @@ public class TestLibroServicioImpl {
     void checkAddAndConvertStringsInIntsIsbnTrue(){
         String[] isbnSeparado = {"978", "3", "16", "148410", "0"};
 
-        int[] result = libroServicio.addDigitsIsbn(isbnSeparado);
+        StringBuilder result = libroServicio.convertArrayStringInAString(isbnSeparado);
 
-        assertThat(result).containsExactly(978, 3, 16, 148410, 0);
+        assertThat(result.toString()).isEqualTo("9783161484100");
     }
 }

@@ -97,15 +97,34 @@ public class LibroServicioImpl implements LibroServicio {
         return isbn.split("-");
     }
 
-    public int [] addDigitsIsbn(String [] isbnSeparado){
+    /**
+     * Método para convertir los strings del isbn en un string todo junto
+     * @param isbnSeparado el array de isbn
+     * @return el string junto
+     */
+    public StringBuilder convertArrayStringInAString(String [] isbnSeparado){
 
-        int [] numeroPasadoAInt = new int[isbnSeparado.length];
-        for(int i = 0; i < isbnSeparado.length; i++){
-            int numero = Integer.parseInt(isbnSeparado[i]);
-            numeroPasadoAInt[i] = numero;
+        //creamos un stringbuilder
+        StringBuilder numerosJuntos = new StringBuilder();
+        //hacemos un bucle para añadir los numeros strings al stringbuilder
+        for(String separado:isbnSeparado){
+            numerosJuntos.append(separado);
         }
-        return numeroPasadoAInt;
+
+        return numerosJuntos;
     }
+
+    public int convertsIsbnStringInAInt(StringBuilder isbn){
+        int contador = 0;
+        int suma = 0;
+        for(int i = 0; i < isbn.length(); i++){
+            char  chars = isbn.charAt(i);
+
+        }
+
+    }
+
+
 
 
 }

@@ -22,4 +22,15 @@ public class TestLibroServicioImpl {
         boolean prefixe = libroServicio.checkStartIsbn("971-");
         Assertions.assertFalse(prefixe);
     }
+
+    @Test
+    void checkIfAIsbnHasMoreThan1TimeAGuionTrue(){
+        boolean guion = libroServicio.checkIsbnHasMoreThan1TimeGuion("978-123-90");
+        Assertions.assertTrue(guion);
+    }
+    @Test
+    void checkIfAIsbnHasMoreThan1TimeAGuionFalse(){
+        boolean guion = libroServicio.checkIsbnHasMoreThan1TimeGuion("978-12");
+        Assertions.assertFalse(guion);
+    }
 }

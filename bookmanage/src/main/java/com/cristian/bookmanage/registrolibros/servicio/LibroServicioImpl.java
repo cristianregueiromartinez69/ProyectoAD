@@ -42,23 +42,50 @@ public class LibroServicioImpl implements LibroServicio {
 
     /**
      * Método para comprobar si el isbn empieza por los prefijos correctos
+     *
      * @param isbn el isbn proporcionado
      * @return true o false dependiendo del isbn que introduzcas
      */
-    public boolean checkStartIsbn(String isbn){
+    public boolean checkStartIsbn(String isbn) {
 
         //array con los prefijos correctos del isbn
-        String [] prefixes = {"978-","979-"};
+        String[] prefixes = {"978-", "979-"};
 
         //bucle para comprobar la coincidencia
-        for(int i =0; i < prefixes.length; i++){
-            if(isbn.startsWith(prefixes[i])){
+        for (int i = 0; i < prefixes.length; i++) {
+            if (isbn.startsWith(prefixes[i])) {
                 return true;
             }
         }
         return false;
     }
 
+    /**
+     * Método para comprobar que el isbn tiene más de 1 guión
+     * @param isbn el isbn proporcioando
+     * @return true o false dependiendo del isbn que introdujeras
+     */
+    public boolean checkIsbnHasMoreThan1TimeGuion(String isbn) {
+
+        //variable con el guion
+        char guion = '-';
+        //array con las letras del isbn
+        char[] chars = isbn.toCharArray();
+
+        //contador para las veces que se repite el guion
+        int contador = 0;
+
+        //bucle para recorrer el array, si encuentra el guion, se incrementa el contador
+        for (char c : chars) {
+            if (c == guion)
+                contador++;
+        }
+        //si el contador es igual o mayor que 2, es válido
+        if (contador >= 2) {
+            return true;
+        }
+        return false;
+    }
 
 
 }

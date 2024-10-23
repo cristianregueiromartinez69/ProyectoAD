@@ -47,7 +47,7 @@ public class LibroControlador {
 
             mongoConnectionService.saveBook(librosRegistroDTO);
         }catch(IsbnExcepcion isEx){
-            return new ResponseEntity<>("Formato isbn incorrecto, debe de tener entre 3 o 4 guiones, no ir juntos los guiones, empezar por 978 o 979, no acabar en guion el isbn, llevar solo numeros o guiones", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<>("Formato isbn incorrecto, debe de tener entre 3 o 4 guiones, no ir juntos los guiones, empezar por 978 o 979, no acabar en guion el isbn, llevar solo numeros o guiones", HttpStatus.BAD_REQUEST);
         }
 
 

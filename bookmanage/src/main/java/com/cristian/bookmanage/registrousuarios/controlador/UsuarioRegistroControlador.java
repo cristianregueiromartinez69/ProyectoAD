@@ -45,13 +45,13 @@ public class UsuarioRegistroControlador {
             mongoConnectionService.save(registroDTO);
             return new ResponseEntity<>("Usuario registrado exitosamente", HttpStatus.CREATED);
         }catch(NombreRegistroExcepcion nombreException){
-            return new ResponseEntity<>("formato de nombre incorrecto, vuelve a intentarlo", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<>("formato de nombre incorrecto, vuelve a intentarlo", HttpStatus.BAD_REQUEST);
         }catch (EmailRegistroExcepcion emailException){
-            return new ResponseEntity<>("Formato de email incorrecto, vuelve a intentarlo", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<>("Formato de email incorrecto, vuelve a intentarlo", HttpStatus.BAD_REQUEST);
         }catch(PasswordRegistroExcepcion passEx){
-            return new ResponseEntity<>("Formato contraseña erroneo, debe ser de 12 o más carácteres, llevar mínimo 1 numero y 1 carácter especial, vuelve a intentarlo", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<>("Formato contraseña erroneo, debe ser de 12 o más carácteres, llevar mínimo 1 numero y 1 carácter especial, vuelve a intentarlo", HttpStatus.BAD_REQUEST);
         }catch(DataIntegrityViolationException dataEx){
-            return new ResponseEntity<>("Ese email ya es de otro usuario, por favor, escribe uno nuevo", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<>("Ese email ya es de otro usuario, por favor, escribe uno nuevo", HttpStatus.BAD_REQUEST);
         }
 
     }

@@ -296,6 +296,15 @@ public class LibroServicioImpl implements LibroServicio {
         return false;
     }
 
+    /**
+     * Método global para comprobar si el nombre del libro cumple todos los estándares
+     * @param name el nombre del libro
+     * @return true o false dependiendo del nombre introducido
+     */
+    public boolean authenticationBookName(String name){
+        return lengthLibroName(name) && strangeCharactersLibroName(name) && checkNotLettersInBookName(name);
+    }
+
 
 
 

@@ -169,4 +169,15 @@ public class TestLibroServicioImpl {
         boolean name = libroServicio.checkNotLettersInBookName("101");
         Assertions.assertFalse(name);
     }
+
+    @Test
+    void checkAuthenticationBookNameTrue(){
+        boolean name = libroServicio.authenticationBookName("Los clérigos del monte");
+        Assertions.assertTrue(name);
+    }
+    @Test
+    void checkAuthenticationBookNameFalse(){
+        boolean name = libroServicio.authenticationBookName("Los clérigos del// monte");
+        Assertions.assertFalse(name);
+    }
 }

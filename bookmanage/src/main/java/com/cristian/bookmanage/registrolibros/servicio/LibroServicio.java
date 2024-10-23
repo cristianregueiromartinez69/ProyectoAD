@@ -3,6 +3,7 @@ package com.cristian.bookmanage.registrolibros.servicio;
 import com.cristian.bookmanage.registrolibros.dto.LibrosRegistroDTO;
 import com.cristian.bookmanage.registrolibros.excepciones.AutorExcepcion;
 import com.cristian.bookmanage.registrolibros.excepciones.IsbnExcepcion;
+import com.cristian.bookmanage.registrolibros.excepciones.NombreLibroExcepcion;
 import com.cristian.bookmanage.registrolibros.modelo.Libros;
 
 /**
@@ -17,5 +18,5 @@ public interface LibroServicio {
      * @param libroRegistroDTO los datos de los libros a través de la dto
      * @return el objeto libros
      */
-    public Libros saveBooks(LibrosRegistroDTO libroRegistroDTO) throws IsbnExcepcion, AutorExcepcion;
+    public Libros saveBooks(LibrosRegistroDTO libroRegistroDTO) throws IsbnExcepcion, AutorExcepcion, NombreLibroExcepcion;
 }

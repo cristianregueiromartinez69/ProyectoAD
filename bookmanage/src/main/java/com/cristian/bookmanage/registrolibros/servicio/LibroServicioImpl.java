@@ -3,6 +3,7 @@ package com.cristian.bookmanage.registrolibros.servicio;
 import com.cristian.bookmanage.registrolibros.dto.LibrosRegistroDTO;
 import com.cristian.bookmanage.registrolibros.excepciones.AutorExcepcion;
 import com.cristian.bookmanage.registrolibros.excepciones.IsbnExcepcion;
+import com.cristian.bookmanage.registrolibros.excepciones.NombreLibroExcepcion;
 import com.cristian.bookmanage.registrolibros.modelo.Libros;
 import com.cristian.bookmanage.registrolibros.registroxml.LibrosXMLSave;
 import com.cristian.bookmanage.registrolibros.repositorio.LibrosRepositorios;
@@ -34,12 +35,14 @@ public class LibroServicioImpl implements LibroServicio {
      * @return el libro guardado a través del metodo del repositorio que guardará el libro en la base de datos
      */
     @Override
-    public Libros saveBooks(LibrosRegistroDTO libroRegistroDTO) throws IsbnExcepcion, AutorExcepcion {
+    public Libros saveBooks(LibrosRegistroDTO libroRegistroDTO) throws IsbnExcepcion, AutorExcepcion, NombreLibroExcepcion {
 
         if (!authenticationIsbn(libroRegistroDTO.getIsbn())) {
             throw new IsbnExcepcion("Formato de isbn incorrecto");
         } else if (!authenticationAutorLibro(libroRegistroDTO.getAutor())) {
             throw new AutorExcepcion("Este nombre es incorrecto");
+        } else if (!authenticationBookName(libroRegistroDTO.getNombre())) {
+            throw new NombreLibroExcepcion("Formato de nombre de libro incorrecto");
         } else {
             Libros libro = new Libros(libroRegistroDTO.getIsbn(), libroRegistroDTO.getAutor(),
                     libroRegistroDTO.getNombre(), libroRegistroDTO.getFechaLectura(), libroRegistroDTO.getFechaRegistro());

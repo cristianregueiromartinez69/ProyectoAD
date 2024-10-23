@@ -71,4 +71,14 @@ public class TestLibroServicioImpl {
         Assertions.assertFalse(isbn);
     }
 
+    @Test
+    void checkAuthenticacionIsbnTrue(){
+        boolean isbn = libroServicio.authenticationIsbn("978-123-123-00");
+        Assertions.assertTrue(isbn);
+    }
+    @Test
+    void checkAuthenticacionIsbnFalse(){
+        boolean isbn = libroServicio.authenticationIsbn("978-123-1200--23");
+        Assertions.assertFalse(isbn);
+    }
 }

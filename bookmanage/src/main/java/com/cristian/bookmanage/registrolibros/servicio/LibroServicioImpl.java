@@ -35,9 +35,7 @@ public class LibroServicioImpl implements LibroServicio {
     @Override
     public Libros saveBooks(LibrosRegistroDTO libroRegistroDTO) throws IsbnExcepcion {
 
-        if (!checkStartIsbn(libroRegistroDTO.getIsbn()) && !checkIsbnHasMoreThan2TimeGuion(libroRegistroDTO.getIsbn())
-                && !checkNoGuionesTogether(libroRegistroDTO.getIsbn()) && !checkIsbnHasOnlyNumbersAndGuion(libroRegistroDTO.getIsbn())
-                && !checkIsbnEndGuion(libroRegistroDTO.getIsbn())) {
+        if (!authenticationIsbn(libroRegistroDTO.getIsbn())) {
             throw new IsbnExcepcion("Formato de isbn incorrecto");
         } else {
             Libros libro = new Libros(libroRegistroDTO.getIsbn(), libroRegistroDTO.getAutor(),
@@ -47,6 +45,11 @@ public class LibroServicioImpl implements LibroServicio {
         }
 
 
+    }
+
+    public boolean authenticationIsbn(String isbn){
+        return checkStartIsbn(isbn) && checkIsbnEndGuion(isbn) && checkIsbnHasMoreThan2TimeGuion(isbn) &&
+                checkNoGuionesTogether(isbn) && checkIsbnHasOnlyNumbersAndGuion(isbn);
     }
 
 

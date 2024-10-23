@@ -1,6 +1,7 @@
 package com.cristian.bookmanage.registrolibros.controlador;
 
 import com.cristian.bookmanage.registrolibros.dto.LibrosRegistroDTO;
+import com.cristian.bookmanage.registrolibros.excepciones.IsbnExcepcion;
 import com.cristian.bookmanage.registrolibros.registroxml.LibrosXMLSave;
 import com.cristian.bookmanage.registrolibros.servicio.LibroServicio;
 import com.cristian.bookmanage.registrolibros.servicio.LibroServicioImpl;
@@ -41,9 +42,14 @@ public class LibroControlador {
     public ResponseEntity<String> registrarLibros(@RequestBody LibrosRegistroDTO librosRegistroDTO) {
 
         //guardamos los libros en las bass de datos
-        libroServicio.saveBooks(librosRegistroDTO);
+        try{
+            libroServicio.saveBooks(librosRegistroDTO);
 
-        mongoConnectionService.saveBook(librosRegistroDTO);
+            mongoConnectionService.saveBook(librosRegistroDTO);
+        }catch(IsbnExcepcion isEx){
+            return new ResponseEntity<>("Formato isbn incorrecto, debe de tener entre 3 o 4 guiones, no ir juntos los guiones, empezar por 978 o 979, no acabar en guion el isbn, llevar solo numeros o guiones", HttpStatus.UNAUTHORIZED);
+        }
+
 
         /**
          * Intentamos guardar el xml, si no sale bien, salta un mensaje de error

@@ -1,6 +1,7 @@
 package com.cristian.bookmanage.registrolibros.servicio;
 
 import com.cristian.bookmanage.registrolibros.dto.LibrosRegistroDTO;
+import com.cristian.bookmanage.registrolibros.excepciones.IsbnExcepcion;
 import com.cristian.bookmanage.registrolibros.modelo.Libros;
 import com.cristian.bookmanage.registrolibros.registroxml.LibrosXMLSave;
 import com.cristian.bookmanage.registrolibros.repositorio.LibrosRepositorios;
@@ -32,11 +33,20 @@ public class LibroServicioImpl implements LibroServicio {
      * @return el libro guardado a través del metodo del repositorio que guardará el libro en la base de datos
      */
     @Override
-    public Libros saveBooks(LibrosRegistroDTO libroRegistroDTO) {
-        Libros libro = new Libros(libroRegistroDTO.getIsbn(), libroRegistroDTO.getAutor(),
-                libroRegistroDTO.getNombre(), libroRegistroDTO.getFechaLectura(), libroRegistroDTO.getFechaRegistro());
+    public Libros saveBooks(LibrosRegistroDTO libroRegistroDTO) throws IsbnExcepcion {
 
-        return librosRepositorios.save(libro);
+        if (!checkStartIsbn(libroRegistroDTO.getIsbn()) && !checkIsbnHasMoreThan2TimeGuion(libroRegistroDTO.getIsbn())
+                && !checkNoGuionesTogether(libroRegistroDTO.getIsbn()) && !checkIsbnHasOnlyNumbersAndGuion(libroRegistroDTO.getIsbn())
+                && !checkIsbnEndGuion(libroRegistroDTO.getIsbn())) {
+            throw new IsbnExcepcion("Formato de isbn incorrecto");
+        } else {
+            Libros libro = new Libros(libroRegistroDTO.getIsbn(), libroRegistroDTO.getAutor(),
+                    libroRegistroDTO.getNombre(), libroRegistroDTO.getFechaLectura(), libroRegistroDTO.getFechaRegistro());
+
+            return librosRepositorios.save(libro);
+        }
+
+
     }
 
 
@@ -62,22 +72,24 @@ public class LibroServicioImpl implements LibroServicio {
 
     /**
      * Método que comprueba si el isbn acaba en guion
+     *
      * @param isbn el isbn
      * @return true o false dependiendo de si acaba o no en guion
      */
-    public boolean checkIsbnEndGuion(String isbn){
+    public boolean checkIsbnEndGuion(String isbn) {
         return !isbn.endsWith("-");
     }
 
     /**
      * Metodo para comprobar si un isbn tiene 2 guiones juntos
+     *
      * @param isbn el isbn
      * @return true o false dependiendo del guion introducido
      */
-    public boolean checkNoGuionesTogether(String isbn){
+    public boolean checkNoGuionesTogether(String isbn) {
 
         //array con las letras del isbn
-        char [] chars = isbn.toCharArray();
+        char[] chars = isbn.toCharArray();
         //el guion a encontrar
         char guion = '-';
         //contador de guiones
@@ -88,11 +100,11 @@ public class LibroServicioImpl implements LibroServicio {
          * 2. si encuentra un guion, lo aumentamos a +1
          * 3. si el contador esta en 1 y la siguiente letra del isbn es un guion, devuelve false
          */
-        for(int i = 0; i < chars.length; i++){
-            if(chars[i] == guion){
+        for (int i = 0; i < chars.length; i++) {
+            if (chars[i] == guion) {
                 contador++;
             }
-            if(contador == 1 && chars[i + 1] == guion){
+            if (contador == 1 && chars[i + 1] == guion) {
                 return false;
             }
             contador = 0;
@@ -102,6 +114,7 @@ public class LibroServicioImpl implements LibroServicio {
 
     /**
      * Método para comprobar que el isbn tiene más de 1 guión
+     *
      * @param isbn el isbn proporcioando
      * @return true o false dependiendo del isbn que introdujeras
      */
@@ -129,10 +142,11 @@ public class LibroServicioImpl implements LibroServicio {
 
     /**
      * Método para comprobar que todos los caraceteres introducidos en el isbn son numeros o guiones
+     *
      * @param isbn el isbn proporcionado
      * @return true o false dependiendo del caracter a encontrar
      */
-    public boolean checkIsbnHasOnlyNumbersAndGuion(String isbn){
+    public boolean checkIsbnHasOnlyNumbersAndGuion(String isbn) {
 
         //creamos un array con las letras del isbn
         char[] chars = isbn.toCharArray();
@@ -149,10 +163,6 @@ public class LibroServicioImpl implements LibroServicio {
         return true;
 
     }
-
-
-
-
 
 
 }

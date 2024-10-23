@@ -242,6 +242,61 @@ public class LibroServicioImpl implements LibroServicio {
         return lengthAutorName(autor) && isDigitAutor(autor) && strangeCharactersAutor(autor);
     }
 
+    //--------------------------------Metodos autenticacion nombre del libro-----------------------------------//
+
+    /**
+     * Metodo para comprobar si un el nombre del libro tiene 2 o más letras (existen nombres de libros con 2 letras, por ejemplo, IT)
+     *
+     * @param name el nombre que le vamos a pasar
+     * @return True o False en caso de tener menos o mas letras
+     */
+    public boolean lengthLibroName(String name) {
+
+        return name.length() >= 2;
+    }
+    /**
+     * Método para comprobar que no se introducen carácteres extraños en los nombres de los libros
+     * @param name el nombre que vas a introducir
+     * @return True o False dependiendo del nombre introducido
+     */
+    public boolean strangeCharactersLibroName(String name){
+        //mismo procedimiento que en el método anterior pero con caracteres extraños
+        char[] caracteres = {'!', '|', '@', '"', '#', '·', '~', '$', '%', '€','¬','&','/','(',')','=','?','¿'
+                ,'¡','º','ª','<','>','+','-','*','^','[',']','¨','{','}',',',';',':','_','`','´'};
+        char[] chars = name.toCharArray();
+        for (char letra : chars) {
+
+            for(char numero:caracteres){
+                if (letra == numero){
+                    return false;
+                }
+            }
+
+        }
+        return true;
+
+    }
+
+    /**
+     * Método que comprueba si el titulo de un libro tiene al menos 1 letra
+     * @param name el nombre del libro
+     * @return true o false dependiendo de lo que escribas
+     */
+    public boolean checkNotLettersInBookName(String name){
+
+        //array de letras con el nombre del libro
+        char [] chars = name.toCharArray();
+        //bucle que recorre el array de letras del libro
+        for(char c: chars){
+            //si hay coincidencia, devuelve true
+            if(Character.isLetter(c)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
 
 
 }

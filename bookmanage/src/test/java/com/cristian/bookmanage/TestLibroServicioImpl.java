@@ -131,4 +131,42 @@ public class TestLibroServicioImpl {
         boolean autor = libroServicio.authenticationAutorLibro("Don Enrique d//e los puentes");
         Assertions.assertFalse(autor);
     }
+
+    @Test
+    void checkLengthBookNameTrueComprobation() {
+
+        boolean length = libroServicio.lengthLibroName("Serpientes de cascabel");
+
+        Assertions.assertTrue(length);
+
+    }
+    @Test
+    void checkLengthBookNameFalseComprobation() {
+
+        boolean length = libroServicio.lengthLibroName("a");
+
+        Assertions.assertFalse(length);
+
+    }
+    @Test
+    void checkIfANameOfBookHasStrangerCharactersTrue(){
+        boolean thing = libroServicio.strangeCharactersAutor("serpientes de cascabel");
+        Assertions.assertTrue(thing);
+    }
+    @Test
+    void checkIfANameOfBookHasStrangerCharactersFalse(){
+        boolean thing = libroServicio.strangeCharactersAutor("serpientes de cascabe&&l");
+        Assertions.assertFalse(thing);
+    }
+
+    @Test
+    void checkIfABookNameHasAlmost1LetterTrue(){
+        boolean name = libroServicio.checkNotLettersInBookName("101 dalmatas");
+        Assertions.assertTrue(name);
+    }
+    @Test
+    void checkIfABookNameHasAlmost1LetterFalse(){
+        boolean name = libroServicio.checkNotLettersInBookName("101");
+        Assertions.assertFalse(name);
+    }
 }

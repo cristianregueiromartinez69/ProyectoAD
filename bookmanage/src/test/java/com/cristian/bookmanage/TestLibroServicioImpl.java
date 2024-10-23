@@ -26,32 +26,37 @@ public class TestLibroServicioImpl {
     }
 
     @Test
-    void checkIfAIsbnHasMoreThan1TimeAGuionTrue(){
-        boolean guion = libroServicio.checkIsbnHasMoreThan1TimeGuion("978-123-90");
+    void checkIfAIsbnWEndsWithGuionTrue(){
+        boolean isbn = libroServicio.checkIsbnEndGuion("978-123-987-00");
+        Assertions.assertTrue(isbn);
+    }
+    @Test
+    void checkIfAIsbnWEndsWithGuionFalse(){
+        boolean isbn = libroServicio.checkIsbnEndGuion("978-123-987-");
+        Assertions.assertFalse(isbn);
+    }
+
+    @Test
+    void checkIfAIsbnHasMoreThan2TimeAGuionTrue(){
+        boolean guion = libroServicio.checkIsbnHasMoreThan2TimeGuion("978-123-90-21");
         Assertions.assertTrue(guion);
     }
     @Test
-    void checkIfAIsbnHasMoreThan1TimeAGuionFalse(){
-        boolean guion = libroServicio.checkIsbnHasMoreThan1TimeGuion("978-12");
+    void checkIfAIsbnHasMoreThan2TimeAGuionFalse(){
+        boolean guion = libroServicio.checkIsbnHasMoreThan2TimeGuion("978-12");
         Assertions.assertFalse(guion);
     }
 
     @Test
-    void checkSplitIsbnTrue(){
-
-        String isbn = "978-3-16-148410-0";
-
-        String[] result = libroServicio.returnListDigitsIsbn(isbn);
-
-        assertThat(result).containsExactly("978", "3", "16", "148410", "0");
+    void checkIfAIsbnHasOnlyNumbersAndGionesTrue(){
+        boolean isbn = libroServicio.checkIsbnHasOnlyNumbersAndGuion("978-123-123-00");
+        Assertions.assertTrue(isbn);
     }
 
     @Test
-    void checkAddAndConvertStringsInIntsIsbnTrue(){
-        String[] isbnSeparado = {"978", "3", "16", "148410", "0"};
-
-        StringBuilder result = libroServicio.convertArrayStringInAString(isbnSeparado);
-
-        assertThat(result.toString()).isEqualTo("9783161484100");
+    void checkIfAIsbnHasOnlyNumbersAndGionesFalse(){
+        boolean isbn = libroServicio.checkIsbnHasOnlyNumbersAndGuion("9frfrf78-123-12kj-0");
+        Assertions.assertFalse(isbn);
     }
+
 }

@@ -60,12 +60,33 @@ public class LibroServicioImpl implements LibroServicio {
         return false;
     }
 
+    public boolean checkIsbnEndGuion(String isbn){
+        return !isbn.endsWith("-");
+    }
+
+    public boolean checkNoGuionesTogether(String isbn){
+
+        char [] chars = isbn.toCharArray();
+        char guion = '-';
+        int contador = 0;
+
+        for(int i = 0; i < chars.length; i++){
+            if(chars[i] == guion){
+                contador++;
+            }
+            if(contador == 1 && chars[i + 1] == guion){
+                return false;
+            }
+        }
+        return true;
+    }
+
     /**
      * Método para comprobar que el isbn tiene más de 1 guión
      * @param isbn el isbn proporcioando
      * @return true o false dependiendo del isbn que introdujeras
      */
-    public boolean checkIsbnHasMoreThan1TimeGuion(String isbn) {
+    public boolean checkIsbnHasMoreThan2TimeGuion(String isbn) {
 
         //variable con el guion
         char guion = '-';
@@ -81,48 +102,36 @@ public class LibroServicioImpl implements LibroServicio {
                 contador++;
         }
         //si el contador es igual o mayor que 2, es válido
-        if (contador >= 2) {
+        if (contador >= 3) {
             return true;
         }
         return false;
     }
 
     /**
-     * Método para devolver un array de Strings a partir del isbn proporcionado
+     * Método para comprobar que todos los caraceteres introducidos en el isbn son numeros o guiones
      * @param isbn el isbn proporcionado
-     * @return el array de Strings con los numeros
+     * @return true o false dependiendo del caracter a encontrar
      */
-    public String [] returnListDigitsIsbn(String isbn){
+    public boolean checkIsbnHasOnlyNumbersAndGuion(String isbn){
 
-        return isbn.split("-");
-    }
+        //creamos un array con las letras del isbn
+        char[] chars = isbn.toCharArray();
 
-    /**
-     * Método para convertir los strings del isbn en un string todo junto
-     * @param isbnSeparado el array de isbn
-     * @return el string junto
-     */
-    public StringBuilder convertArrayStringInAString(String [] isbnSeparado){
-
-        //creamos un stringbuilder
-        StringBuilder numerosJuntos = new StringBuilder();
-        //hacemos un bucle para añadir los numeros strings al stringbuilder
-        for(String separado:isbnSeparado){
-            numerosJuntos.append(separado);
+        //recorremos el array
+        for (char c : chars) {
+            //si no es un numero y no es un guion, devuelve false
+            if (!Character.isDigit(c) && c != '-') {
+                return false;
+            }
         }
 
-        return numerosJuntos;
-    }
 
-    public int convertsIsbnStringInAInt(StringBuilder isbn){
-        int contador = 0;
-        int suma = 0;
-        for(int i = 0; i < isbn.length(); i++){
-            char  chars = isbn.charAt(i);
-
-        }
+        return true;
 
     }
+
+
 
 
 

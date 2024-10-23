@@ -59,4 +59,16 @@ public class TestLibroServicioImpl {
         Assertions.assertFalse(isbn);
     }
 
+    @Test
+    void checkIfAIsbnHasGuionesTogetherTrue(){
+        boolean isbn = libroServicio.checkNoGuionesTogether("987-123-123-123");
+        Assertions.assertTrue(isbn);
+
+    }
+    @Test
+    void checkIfAIsbnHasGuionesTogetherFalse(){
+        boolean isbn = libroServicio.checkNoGuionesTogether("987--123-123-123");
+        Assertions.assertFalse(isbn);
+    }
+
 }

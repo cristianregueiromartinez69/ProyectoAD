@@ -60,16 +60,34 @@ public class LibroServicioImpl implements LibroServicio {
         return false;
     }
 
+    /**
+     * Método que comprueba si el isbn acaba en guion
+     * @param isbn el isbn
+     * @return true o false dependiendo de si acaba o no en guion
+     */
     public boolean checkIsbnEndGuion(String isbn){
         return !isbn.endsWith("-");
     }
 
+    /**
+     * Metodo para comprobar si un isbn tiene 2 guiones juntos
+     * @param isbn el isbn
+     * @return true o false dependiendo del guion introducido
+     */
     public boolean checkNoGuionesTogether(String isbn){
 
+        //array con las letras del isbn
         char [] chars = isbn.toCharArray();
+        //el guion a encontrar
         char guion = '-';
+        //contador de guiones
         int contador = 0;
 
+        /**
+         * 1. recorremos el bucle
+         * 2. si encuentra un guion, lo aumentamos a +1
+         * 3. si el contador esta en 1 y la siguiente letra del isbn es un guion, devuelve false
+         */
         for(int i = 0; i < chars.length; i++){
             if(chars[i] == guion){
                 contador++;
@@ -77,6 +95,7 @@ public class LibroServicioImpl implements LibroServicio {
             if(contador == 1 && chars[i + 1] == guion){
                 return false;
             }
+            contador = 0;
         }
         return true;
     }

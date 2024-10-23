@@ -81,4 +81,44 @@ public class TestLibroServicioImpl {
         boolean isbn = libroServicio.authenticationIsbn("978-123-1200--23");
         Assertions.assertFalse(isbn);
     }
+
+    @Test
+    void checkLengthAutorTrueComprobation() {
+
+        boolean length = libroServicio.lengthAutorName("carlos");
+
+        Assertions.assertTrue(length);
+
+    }
+    @Test
+    void checkLengthAutorFalseComprobation() {
+
+        boolean length = libroServicio.lengthAutorName("a");
+
+        Assertions.assertFalse(length);
+
+    }
+
+    @Test
+    void CheckIfANameOfAutorHasNumbersTrue(){
+        boolean number = libroServicio.isDigitAutor("Javier mancillo rodriguez");
+        Assertions.assertTrue(number);
+    }
+
+    @Test
+    void CheckIfANameOfAutorHasNumbersFalse(){
+        boolean number = libroServicio.isDigitAutor("J123avier mancillo rodriguez");
+        Assertions.assertFalse(number);
+    }
+
+    @Test
+    void checkIfANameOfAutorHasStrangerCharactersTrue(){
+        boolean thing = libroServicio.strangeCharactersAutor("Camión");
+        Assertions.assertTrue(thing);
+    }
+    @Test
+    void checkIfANameOfAutorHasStrangerCharactersFalse(){
+        boolean thing = libroServicio.strangeCharactersAutor("Pepe de los %monte´s");
+        Assertions.assertFalse(thing);
+    }
 }

@@ -47,6 +47,8 @@ public class LibroServicioImpl implements LibroServicio {
 
     }
 
+    //--------------------------------Metodos autenticacion isbn-----------------------------------//
+
     public boolean authenticationIsbn(String isbn){
         return checkStartIsbn(isbn) && checkIsbnEndGuion(isbn) && checkIsbnHasMoreThan2TimeGuion(isbn) &&
                 checkNoGuionesTogether(isbn) && checkIsbnHasOnlyNumbersAndGuion(isbn);
@@ -166,6 +168,68 @@ public class LibroServicioImpl implements LibroServicio {
         return true;
 
     }
+
+    //--------------------------------Metodos autenticacion autor libro-----------------------------------//
+
+    /**
+     * Metodo para comprobar si un el nombre de un autor tiene 2 o más letras (existen nombres con 2 letras, por ejemplo, Ed)
+     *
+     * @param autor el nombre que le vamos a pasar
+     * @return True o False en caso de tener menos o mas letras
+     */
+    public boolean lengthAutorName(String autor) {
+
+        return autor.length() >= 2;
+    }
+
+    /**
+     * Método para comprobar que no se introducen numeros en el nombre del autor de un libro
+     * @param autor el nombre a introducir
+     * @return True o False dependiendo del nombre que introdujeras
+     */
+    public boolean isDigitAutor(String autor) {
+
+        //se realiza un array de chars con los numeros y un array de chars con el string
+        char[] numeros = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+        char[] chars = autor.toCharArray();
+        //con un bucle recorremos el array de letras y con otro anidado el de numeros
+        for (char letra : chars) {
+
+            //si alguna letra coincide con un numero, el metodo devuelve false
+            for(char numero:numeros){
+                if (letra == numero){
+                    return false;
+                }
+            }
+
+        }
+        return true;
+
+    }
+
+    /**
+     * Método para comprobar que no se introducen carácteres extraños en los nombres de autores
+     * @param autor el nombre que vas a introducir
+     * @return True o False dependiendo del nombre introducido
+     */
+    public boolean strangeCharactersAutor(String autor){
+        //mismo procedimiento que en el método anterior pero con caracteres extraños
+        char[] caracteres = {'!', '|', '@', '"', '#', '·', '~', '$', '%', '€','¬','&','/','(',')','=','?','¿'
+                ,'¡','º','ª','<','>','+','-','*','^','[',']','¨','{','}',',',';',':','_','`','´'};
+        char[] chars = autor.toCharArray();
+        for (char letra : chars) {
+
+            for(char numero:caracteres){
+                if (letra == numero){
+                    return false;
+                }
+            }
+
+        }
+        return true;
+
+    }
+
 
 
 }

@@ -121,4 +121,14 @@ public class TestLibroServicioImpl {
         boolean thing = libroServicio.strangeCharactersAutor("Pepe de los %monte´s");
         Assertions.assertFalse(thing);
     }
+    @Test
+    void checkAuthenticacionAutorNameTrue(){
+        boolean autor = libroServicio.authenticationAutorLibro("Don Enrique de los puentes");
+        Assertions.assertTrue(autor);
+    }
+    @Test
+    void checkAuthenticacionAutorNameFalse(){
+        boolean autor = libroServicio.authenticationAutorLibro("Don Enrique d//e los puentes");
+        Assertions.assertFalse(autor);
+    }
 }

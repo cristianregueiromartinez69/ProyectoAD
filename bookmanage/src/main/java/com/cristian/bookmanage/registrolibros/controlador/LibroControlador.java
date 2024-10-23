@@ -50,7 +50,7 @@ public class LibroControlador {
         }catch(IsbnExcepcion isEx){
             return new ResponseEntity<>("Formato isbn incorrecto, debe de tener entre 3 o 4 guiones, no ir juntos los guiones, empezar por 978 o 979, no acabar en guion el isbn, llevar solo numeros o guiones", HttpStatus.BAD_REQUEST);
         }catch(AutorExcepcion auEx){
-            return new ResponseEntity<>("Nombre incorrecto, nada de numeros, caracteres raros", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Nombre incorrecto, nada de numeros, caracteres raros o escribir una sola letra de nombre", HttpStatus.BAD_REQUEST);
         }
 
 

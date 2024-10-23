@@ -308,6 +308,18 @@ public class LibroServicioImpl implements LibroServicio {
         return lengthLibroName(name) && strangeCharactersLibroName(name) && checkNotLettersInBookName(name);
     }
 
+    //--------------------------------Metodos autenticacion fechas-----------------------------------//
+    //todo: metodos autenticacion fechas
+    /**
+     * 1. poner solo 2 guiones
+     * 2. formato será dia-mes-año
+     * 3. no poner mes mayor que 12 o menor que 1
+     * 4. no poner dia mayor que 31 0 30 dependiendo del mes
+     * 5. no poner dia menor que 1
+     * 6. la fecha de registro debe de ser la del dia en la que se registra el libro en la base de datos
+     * 7. fecha de lectura superior a la fecha de registro
+     */
+
 
 
 

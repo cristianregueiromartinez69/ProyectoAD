@@ -3,6 +3,7 @@ package com.cristian.bookmanage.registrolibros.controlador;
 import com.cristian.bookmanage.registrolibros.dto.LibrosRegistroDTO;
 import com.cristian.bookmanage.registrolibros.excepciones.AutorExcepcion;
 import com.cristian.bookmanage.registrolibros.excepciones.IsbnExcepcion;
+import com.cristian.bookmanage.registrolibros.excepciones.NombreLibroExcepcion;
 import com.cristian.bookmanage.registrolibros.registroxml.LibrosXMLSave;
 import com.cristian.bookmanage.registrolibros.servicio.LibroServicio;
 import com.cristian.bookmanage.registrolibros.servicio.LibroServicioImpl;
@@ -51,6 +52,8 @@ public class LibroControlador {
             return new ResponseEntity<>("Formato isbn incorrecto, debe de tener entre 3 o 4 guiones, no ir juntos los guiones, empezar por 978 o 979, no acabar en guion el isbn, llevar solo numeros o guiones", HttpStatus.BAD_REQUEST);
         }catch(AutorExcepcion auEx){
             return new ResponseEntity<>("Nombre incorrecto, nada de numeros, caracteres raros o escribir una sola letra de nombre", HttpStatus.BAD_REQUEST);
+        }catch(NombreLibroExcepcion noEx){
+            return new ResponseEntity<>("Formato de nombre d elibro erróneo, nada de numeros, carácteres especiales y longitud mayor a 1 letra", HttpStatus.BAD_REQUEST);
         }
 
 

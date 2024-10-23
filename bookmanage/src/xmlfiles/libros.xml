@@ -42,5 +42,12 @@
       <fechaLectura>2024-10-23</fechaLectura>
       <fechaRegistro>2024-10-23</fechaRegistro>
     </libro>
+    <libro>
+      <isbn>978-123-123-123</isbn>
+      <autor>Juan</autor>
+      <nombre>ejemplo</nombre>
+      <fechaLectura>2024-10-23</fechaLectura>
+      <fechaRegistro>2024-10-23</fechaRegistro>
+    </libro>
   </libro>
 </Libros>

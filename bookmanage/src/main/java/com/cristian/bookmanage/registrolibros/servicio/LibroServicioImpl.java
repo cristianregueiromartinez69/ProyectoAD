@@ -230,6 +230,15 @@ public class LibroServicioImpl implements LibroServicio {
 
     }
 
+    /**
+     * Metodo global que comprueba la autenticacion del nombre del autor
+     * @param autor el autor del libro
+     * @return true o false dependiendo de lo que introduzcas
+     */
+    public boolean authenticationAutorLibro(String autor){
+        return lengthAutorName(autor) && isDigitAutor(autor) && strangeCharactersAutor(autor);
+    }
+
 
 
 }
